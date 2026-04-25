@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMIÈRE — Galería de Arte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Tenor+Sans&family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --gold-dark: #8a6e2a;
+    --cream: #f5f0e8;
+    --dark: #0e0e0e;
+    --charcoal: #1a1a1a;
+    --nav-h: 80px;
+    --transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── LOADER ── */
+  #loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--dark);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 24px;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-logo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    animation: fadeInUp 1s ease both;
+  }
+  .loader-line {
+    width: 1px; height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    animation: grow 1.2s ease 0.5s both;
+  }
+  @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    transition: background var(--transition), backdrop-filter var(--transition);
+    background: rgba(10,10,10,0.0);
+  }
+  nav.scrolled {
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: 1.4rem;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex; gap: clamp(1.2rem, 3vw, 3rem);
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 200;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.7);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 8px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 1px;
+    background: var(--gold);
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed; top: var(--nav-h); left: 0; right: 0;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    z-index: 999;
+    padding: 2rem;
+    flex-direction: column; gap: 1.5rem;
+    list-style: none;
+    transform: translateY(-110%);
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .mobile-menu.open { transform: translateY(0); }
+  .mobile-menu a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 200; font-size: 0.85rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream); text-decoration: none;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh; min-height: 600px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 60% 40%, #1a1208 0%, #0e0e0e 70%);
+  }
+  .hero-bg-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .hero-ornament {
+    width: 1px; height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+    margin-bottom: 3rem;
+    animation: fadeIn 1.5s ease 1.5s both;
+  }
+  .hero-tag {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100; font-size: 0.65rem;
+    letter-spacing: 0.5em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    animation: fadeIn 1s ease 1.8s both;
+  }
+  .hero-title {
+    font-weight: 300; font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: 0.95; letter-spacing: 0.02em;
+    color: var(--cream);
+    animation: fadeInUp 1s ease 2s both;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100; font-size: 0.75rem;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-top: 2rem;
+    animation: fadeIn 1s ease 2.5s both;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fadeIn 1s ease 3s both;
+  }
+  .hero-scroll span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.3em; color: rgba(201,168,76,0.6);
+  }
+  .scroll-bar {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  /* ── SECTION BASE ── */
+  section.gallery-section {
+    min-height: 100vh;
+    padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 6vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: clamp(3rem, 6vh, 5rem);
+    max-width: 900px;
+  }
+  .section-number {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100; font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold); opacity: 0.7;
+    padding-top: 0.6rem;
+    writing-mode: vertical-lr;
+    text-transform: uppercase;
+  }
+  .section-title-block { display: flex; flex-direction: column; gap: 0.75rem; }
+  .section-tag {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100; font-size: 0.6rem;
+    letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .section-title {
+    font-weight: 300; font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 0.9; letter-spacing: -0.01em;
+    color: var(--cream);
+  }
+  .section-desc {
+    font-style: italic; font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: rgba(245,240,232,0.6); max-width: 500px;
+    line-height: 1.7; margin-top: 0.5rem;
+  }
+
+  /* divider */
+  .gold-divider {
+    width: 60px; height: 1px;
+    background: var(--gold);
+    margin: 1.5rem 0;
+  }
+
+  /* ── ARTIST CARDS ── */
+  .artists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: 2px;
+    max-width: 900px;
+  }
+
+  .artist-card {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    cursor: pointer;
+    group: true;
+  }
+  .artist-card::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    transition: opacity 0.5s;
+  }
+  .artist-card:hover::before { opacity: 0.7; }
+
+  .artist-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.9s cubic-bezier(0.4,0,0.2,1);
+    filter: grayscale(20%) contrast(1.05);
+  }
+  .artist-card:hover .artist-img { transform: scale(1.06); }
+
+  .artist-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    z-index: 2;
+    padding: 2rem 1.8rem;
+  }
+  .artist-period {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100; font-size: 0.6rem;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .artist-name {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 300; line-height: 1.1;
+    color: #fff;
+  }
+  .artist-work {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.4rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.4s ease 0.1s;
+  }
+  .artist-card:hover .artist-work {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* Gold frame accent */
+  .artist-card::after {
+    content: '';
+    position: absolute; inset: 12px; z-index: 3;
+    border: 1px solid rgba(201,168,76,0);
+    transition: border-color 0.5s;
+    pointer-events: none;
+  }
+  .artist-card:hover::after { border-color: rgba(201,168,76,0.3); }
+
+  /* ── SECTION BACKGROUNDS ── */
+
+  /* 1. ABSTRACTO — splatter paint feel */
+  #abstracto {
+    background-color: #080810;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 30%, rgba(80,0,120,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 600px 400px at 85% 70%, rgba(180,40,60,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 400px 400px at 50% 50%, rgba(0,80,160,0.12) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  #abstracto::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(circle 3px at 15% 20%, rgba(255,100,50,0.6) 0%, transparent 100%),
+      radial-gradient(circle 2px at 80% 15%, rgba(100,200,255,0.5) 0%, transparent 100%),
+      radial-gradient(circle 4px at 70% 80%, rgba(255,50,150,0.4) 0%, transparent 100%),
+      radial-gradient(circle 2px at 30% 75%, rgba(50,255,150,0.4) 0%, transparent 100%),
+      radial-gradient(circle 3px at 90% 50%, rgba(255,200,0,0.5) 0%, transparent 100%);
+  }
+
+  /* 2. ÓLEO — warm Flemish atmosphere */
+  #oleo {
+    background-color: #0d0906;
+    background-image:
+      radial-gradient(ellipse 900px 700px at 20% 50%, rgba(120,70,10,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse 700px 500px at 80% 20%, rgba(160,90,20,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 500px 500px at 50% 90%, rgba(80,30,5,0.35) 0%, transparent 60%);
+  }
+  #oleo::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 8px,
+      rgba(120,70,10,0.025) 8px,
+      rgba(120,70,10,0.025) 9px
+    );
+  }
+
+  /* 3. IMPRESIONISMO — dappled Monet light */
+  #impresionismo {
+    background-color: #060c0e;
+    background-image:
+      radial-gradient(ellipse 700px 500px at 30% 30%, rgba(0,90,120,0.28) 0%, transparent 55%),
+      radial-gradient(ellipse 600px 400px at 70% 60%, rgba(30,110,60,0.2) 0%, transparent 55%),
+      radial-gradient(ellipse 400px 300px at 80% 10%, rgba(180,160,80,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse 350px 350px at 10% 80%, rgba(100,60,120,0.15) 0%, transparent 55%);
+  }
+  #impresionismo::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 200px 100px at 25% 25%, rgba(100,180,220,0.07) 0%, transparent 100%),
+      radial-gradient(ellipse 150px 80px at 60% 40%, rgba(140,200,100,0.07) 0%, transparent 100%),
+      radial-gradient(ellipse 180px 90px at 75% 75%, rgba(200,180,100,0.06) 0%, transparent 100%);
+  }
+
+  /* 4. SURREALISMO — dreamlike void */
+  #surrealismo {
+    background-color: #04080f;
+    background-image:
+      radial-gradient(ellipse 1000px 600px at 50% 40%, rgba(5,20,60,0.8) 0%, transparent 65%),
+      radial-gradient(ellipse 400px 400px at 15% 70%, rgba(60,0,80,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 500px 300px at 85% 20%, rgba(0,40,80,0.25) 0%, transparent 60%),
+      repeating-conic-gradient(rgba(20,40,100,0.03) 0deg, transparent 0.5deg, transparent 30deg, rgba(20,40,100,0.03) 30.5deg);
+  }
+
+  /* 5. RENACIMIENTO — fresco stone */
+  #renacimiento {
+    background-color: #0a0906;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 50% 30%, rgba(100,80,30,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 600px 400px at 20% 80%, rgba(80,60,20,0.15) 0%, transparent 55%),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 40px,
+        rgba(150,120,40,0.015) 40px,
+        rgba(150,120,40,0.015) 41px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 40px,
+        rgba(150,120,40,0.015) 40px,
+        rgba(150,120,40,0.015) 41px
+      );
+  }
+
+  /* ── QUOTE ── */
+  .section-quote {
+    position: absolute; right: clamp(1.5rem, 5vw, 4rem); bottom: clamp(3rem, 6vh, 5rem);
+    max-width: 280px; text-align: right;
+    display: none;
+  }
+  @media (min-width: 900px) { .section-quote { display: block; } }
+  .section-quote p {
+    font-style: italic; font-size: 1rem;
+    color: rgba(245,240,232,0.3);
+    line-height: 1.8;
+  }
+  .section-quote cite {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.3em;
+    color: var(--gold); opacity: 0.6;
+    font-style: normal; display: block;
+    margin-top: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 4rem clamp(1.5rem, 6vw, 5rem) 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 3rem;
+  }
+  .footer-brand {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100; font-size: 1.5rem;
+    letter-spacing: 0.5em; color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .footer-tagline {
+    font-style: italic; font-size: 0.95rem;
+    color: rgba(245,240,232,0.35);
+  }
+  .footer-col h4 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 200; font-size: 0.6rem;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col a {
+    font-size: 0.9rem; color: rgba(245,240,232,0.45);
+    text-decoration: none; transition: color 0.3s;
+  }
+  .footer-col a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    grid-column: 1/-1;
+    border-top: 1px solid rgba(201,168,76,0.08);
+    padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.25em;
+    color: rgba(245,240,232,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.25s; }
+  .reveal-delay-3 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: flex; }
+    .section-header { grid-template-columns: 1fr; }
+    .section-number { writing-mode: horizontal-tb; }
+    .artists-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .artist-card { aspect-ratio: 4/5; }
+  }
+  @media (max-width: 480px) {
+    .hero-title { font-size: 3rem; }
+    .section-title { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">LUMIÈRE</div>
+  <div class="loader-line"></div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">LUMIÈRE</a>
+  <ul class="nav-links">
+    <li><a href="#abstracto">Abstracto</a></li>
+    <li><a href="#oleo">Óleo</a></li>
+    <li><a href="#impresionismo">Impresionismo</a></li>
+    <li><a href="#surrealismo">Surrealismo</a></li>
+    <li><a href="#renacimiento">Renacimiento</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<ul class="mobile-menu" id="mobileMenu">
+  <li><a href="#abstracto" class="mobile-link">Abstracto</a></li>
+  <li><a href="#oleo" class="mobile-link">Óleo</a></li>
+  <li><a href="#impresionismo" class="mobile-link">Impresionismo</a></li>
+  <li><a href="#surrealismo" class="mobile-link">Surrealismo</a></li>
+  <li><a href="#renacimiento" class="mobile-link">Renacimiento</a></li>
+</ul>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-ornament"></div>
+  <p class="hero-tag">Galería de Arte · Buenos Aires · Est. MMXXV</p>
+  <h1 class="hero-title">El arte<br>que <em>trasciende</em></h1>
+  <p class="hero-sub">Una colección atemporal de maestros del mundo</p>
+  <div class="hero-scroll">
+    <span>Explorar</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ══════════ ABSTRACTO ══════════ -->
+<section id="abstracto" class="gallery-section">
+  <div class="section-header reveal">
+    <span class="section-number">01</span>
+    <div class="section-title-block">
+      <span class="section-tag">Arte Abstracto</span>
+      <h2 class="section-title">Abstrac&shy;to</h2>
+      <div class="gold-divider"></div>
+      <p class="section-desc">Donde el color y la forma se liberan de toda representación, invitando al espectador a construir su propio significado.</p>
+    </div>
+  </div>
+
+  <div class="artists-grid">
+    <div class="artist-card reveal reveal-delay-1">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Wassily_Kandinsky%2C_1913_-_Composition_7.jpg/1280px-Wassily_Kandinsky%2C_1913_-_Composition_7.jpg" alt="Kandinsky - Composición VII" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1866 — 1944</p>
+        <h3 class="artist-name">Wassily<br>Kandinsky</h3>
+        <p class="artist-work">Composición VII, 1913</p>
+      </div>
+    </div>
+    <div class="artist-card reveal reveal-delay-2">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Mark_Rothko%2C_1961%2C_No._14%2C_oil_on_canvas%2C_289.6_x_266.7_cm%2C_San_Francisco_Museum_of_Modern_Art.jpg/800px-Mark_Rothko%2C_1961%2C_No._14%2C_oil_on_canvas%2C_289.6_x_266.7_cm%2C_San_Francisco_Museum_of_Modern_Art.jpg" alt="Rothko - No. 14" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1903 — 1970</p>
+        <h3 class="artist-name">Mark<br>Rothko</h3>
+        <p class="artist-work">No. 14, 1960</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-quote">
+    <p>"El color es un poder que actúa directamente sobre el alma."</p>
+    <cite>— W. Kandinsky</cite>
+  </div>
+</section>
+
+<!-- ══════════ ÓLEO ══════════ -->
+<section id="oleo" class="gallery-section">
+  <div class="section-header reveal">
+    <span class="section-number">02</span>
+    <div class="section-title-block">
+      <span class="section-tag">Pintura al Óleo</span>
+      <h2 class="section-title">Óleo</h2>
+      <div class="gold-divider"></div>
+      <p class="section-desc">La técnica que revolucionó el arte flamenco. Capas de pigmento que atrapan la luz y el tiempo en una superficie inmutable.</p>
+    </div>
+  </div>
+
+  <div class="artists-grid">
+    <div class="artist-card reveal reveal-delay-1">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" alt="Da Vinci - Mona Lisa" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1452 — 1519</p>
+        <h3 class="artist-name">Leonardo<br>da Vinci</h3>
+        <p class="artist-work">La Gioconda, c.1503–1519</p>
+      </div>
+    </div>
+    <div class="artist-card reveal reveal-delay-2">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/800px-1665_Girl_with_a_Pearl_Earring.jpg" alt="Vermeer - La joven de la perla" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1632 — 1675</p>
+        <h3 class="artist-name">Johannes<br>Vermeer</h3>
+        <p class="artist-work">La Joven de la Perla, 1665</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-quote">
+    <p>"La pintura es poesía muda y la poesía es pintura ciega."</p>
+    <cite>— Leonardo da Vinci</cite>
+  </div>
+</section>
+
+<!-- ══════════ IMPRESIONISMO ══════════ -->
+<section id="impresionismo" class="gallery-section">
+  <div class="section-header reveal">
+    <span class="section-number">03</span>
+    <div class="section-title-block">
+      <span class="section-tag">Impresionismo</span>
+      <h2 class="section-title">Impre&shy;sio&shy;nismo</h2>
+      <div class="gold-divider"></div>
+      <p class="section-desc">Pinceladas fugaces que capturan la luz cambiante, el instante efímero y la sensación antes que la forma exacta.</p>
+    </div>
+  </div>
+
+  <div class="artists-grid">
+    <div class="artist-card reveal reveal-delay-1">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg/1280px-Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg" alt="Monet - Nenúfares" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1840 — 1926</p>
+        <h3 class="artist-name">Claude<br>Monet</h3>
+        <p class="artist-work">Nenúfares, 1906</p>
+      </div>
+    </div>
+    <div class="artist-card reveal reveal-delay-2">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Degas_Edgar_Two_Dancers_on_a_Stage_1874.jpg/800px-Degas_Edgar_Two_Dancers_on_a_Stage_1874.jpg" alt="Degas - Bailarinas" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1834 — 1917</p>
+        <h3 class="artist-name">Edgar<br>Degas</h3>
+        <p class="artist-work">Dos Bailarinas, 1874</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-quote">
+    <p>"El color es mi obsesión diaria, mi alegría y mi tormento."</p>
+    <cite>— Claude Monet</cite>
+  </div>
+</section>
+
+<!-- ══════════ SURREALISMO ══════════ -->
+<section id="surrealismo" class="gallery-section">
+  <div class="section-header reveal">
+    <span class="section-number">04</span>
+    <div class="section-title-block">
+      <span class="section-tag">Surrealismo</span>
+      <h2 class="section-title">Surrea&shy;lismo</h2>
+      <div class="gold-divider"></div>
+      <p class="section-desc">El subconsciente hecho imagen. La frontera entre el sueño y la vigilia disuelta en una obra que desafía toda lógica.</p>
+    </div>
+  </div>
+
+  <div class="artists-grid">
+    <div class="artist-card reveal reveal-delay-1">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg" alt="Dalí - La persistencia de la memoria" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1904 — 1989</p>
+        <h3 class="artist-name">Salvador<br>Dalí</h3>
+        <p class="artist-work">La Persistencia de la Memoria, 1931</p>
+      </div>
+    </div>
+    <div class="artist-card reveal reveal-delay-2">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/en/1/1e/Magritte_TheSonOfMan.jpg" alt="Magritte - El hijo del hombre" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1898 — 1967</p>
+        <h3 class="artist-name">René<br>Magritte</h3>
+        <p class="artist-work">El Hijo del Hombre, 1964</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-quote">
+    <p>"No hay nada más surrealista que la realidad misma."</p>
+    <cite>— Salvador Dalí</cite>
+  </div>
+</section>
+
+<!-- ══════════ RENACIMIENTO ══════════ -->
+<section id="renacimiento" class="gallery-section">
+  <div class="section-header reveal">
+    <span class="section-number">05</span>
+    <div class="section-title-block">
+      <span class="section-tag">Renacimiento</span>
+      <h2 class="section-title">Renaci&shy;miento</h2>
+      <div class="gold-divider"></div>
+      <p class="section-desc">El renacer de la antigüedad clásica. El cuerpo humano como medida del universo, la razón y el arte en perfecta armonía.</p>
+    </div>
+  </div>
+
+  <div class="artists-grid">
+    <div class="artist-card reveal reveal-delay-1">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Michelangelo_Buonarroti_-_Tondo_Doni_-_Google_Art_Project.jpg/800px-Michelangelo_Buonarroti_-_Tondo_Doni_-_Google_Art_Project.jpg" alt="Miguel Ángel - Tondo Doni" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1475 — 1564</p>
+        <h3 class="artist-name">Miguel<br>Ángel</h3>
+        <p class="artist-work">Tondo Doni, c.1507</p>
+      </div>
+    </div>
+    <div class="artist-card reveal reveal-delay-2">
+      <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1280px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg" alt="Botticelli - El nacimiento de Venus" loading="lazy">
+      <div class="artist-info">
+        <p class="artist-period">1445 — 1510</p>
+        <h3 class="artist-name">Sandro<br>Botticelli</h3>
+        <p class="artist-work">El Nacimiento de Venus, c.1485</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-quote">
+    <p>"La mayor riqueza es vivir contento con la pobreza."</p>
+    <cite>— Miguel Ángel</cite>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">LUMIÈRE</div>
+    <p class="footer-tagline">Una colección para la eternidad.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Colecciones</h4>
+    <ul>
+      <li><a href="#abstracto">Arte Abstracto</a></li>
+      <li><a href="#oleo">Pintura al Óleo</a></li>
+      <li><a href="#impresionismo">Impresionismo</a></li>
+      <li><a href="#surrealismo">Surrealismo</a></li>
+      <li><a href="#renacimiento">Renacimiento</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Galería</h4>
+    <ul>
+      <li><a href="#">Visitas guiadas</a></li>
+      <li><a href="#">Exposiciones</a></li>
+      <li><a href="#">Catálogo</a></li>
+      <li><a href="#">Membresías</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Contacto</h4>
+    <ul>
+      <li><a href="#">info@lumiere.art</a></li>
+      <li><a href="#">+54 11 4800-0000</a></li>
+      <li><a href="#">Buenos Aires, AR</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Lumière Galería de Arte · Todos los derechos reservados</p>
+    <p>Diseñado con excelencia</p>
+  </div>
+</footer>
+
+<script>
+  // Loader
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 1800);
+  });
+
+  // Navbar scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
