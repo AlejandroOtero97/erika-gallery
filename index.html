@@ -3,841 +3,1379 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galería de Arte — 3 Propuestas de Diseño</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<title>Atelier — Galería de Arte Contemporáneo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gold: #c9a96e;
+  --gold-dim: #c9a96e55;
+  --gold-faint: #c9a96e18;
+  --bg: #0d0d0d;
+  --bg2: #111111;
+  --bg3: #161616;
+  --bg4: #1a1a1a;
+  --border: #1e1e1e;
+  --border2: #2a2a2a;
+  --text: #e8e2d9;
+  --text2: #a09890;
+  --text3: #555;
+  --serif: 'Cormorant Garamond', serif;
+  --sans: 'DM Sans', sans-serif;
+}
 
-  /* ─── DIVIDER ─────────────────────────────────────────────── */
-  .option-divider {
-    background: #111;
-    color: #fff;
-    text-align: center;
-    padding: 1.2rem 2rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .option-divider span { opacity: 0.45; margin: 0 1rem; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-  /* ══════════════════════════════════════════════════════════════
-     OPCIÓN 1 — EDITORIAL OSCURA
-     Lujo, tipografía serif grande, fondo casi negro, detalles dorados
-  ══════════════════════════════════════════════════════════════ */
-  #op1 {
-    background: #0d0d0d;
-    color: #e8e2d9;
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    padding-bottom: 5rem;
-  }
-  #op1 .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 70vh;
-  }
-  #op1 .hero-left {
-    padding: 4rem 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    border-right: 1px solid #2a2a2a;
-  }
-  #op1 .hero-left .eyebrow {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #c9a96e;
-    margin-bottom: 1.5rem;
-  }
-  #op1 .hero-left h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1.0;
-    color: #f0ebe2;
-    margin-bottom: 1.5rem;
-  }
-  #op1 .hero-left h1 em {
-    font-style: italic;
-    color: #c9a96e;
-  }
-  #op1 .hero-left p {
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: #888;
-    max-width: 28ch;
-    margin-bottom: 2.5rem;
-  }
-  #op1 .hero-left .cta {
-    display: inline-block;
-    border: 1px solid #c9a96e;
-    color: #c9a96e;
-    padding: 0.75rem 2rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-decoration: none;
-    width: fit-content;
-    transition: all 0.3s;
-    cursor: pointer;
-  }
-  #op1 .hero-left .cta:hover { background: #c9a96e; color: #0d0d0d; }
-  #op1 .hero-right {
-    background: #1a1a1a;
-    position: relative;
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  #op1 .mock-img-1 {
-    width: 100%; height: 100%;
-    position: relative;
-    background: linear-gradient(135deg, #1e1a14 0%, #2d2417 40%, #1a1410 100%);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 0.5rem;
-  }
-  #op1 .mock-img-1 img {
-    position: absolute;
-    inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  #op1 .mock-img-1::before {
-    content: '';
-    width: 120px; height: 160px;
-    background: linear-gradient(160deg, #c9a96e22, #c9a96e08);
-    border: 1px solid #c9a96e44;
-    display: block;
-  }
-  #op1 .mock-img-1 span {
-    color: #c9a96e66;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-  #op1 .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 3rem;
-    border-bottom: 1px solid #1e1e1e;
-  }
-  #op1 .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: #f0ebe2;
-  }
-  #op1 .nav-links {
-    display: flex; gap: 2.5rem;
-    list-style: none;
-  }
-  #op1 .nav-links a {
-    color: #666;
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  #op1 .nav-links a:hover { color: #c9a96e; }
-  #op1 .gallery-section { padding: 4rem 3rem; }
-  #op1 .section-label {
-    display: flex; align-items: center; gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-  #op1 .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #222;
-  }
-  #op1 .section-label span {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #c9a96e;
-    white-space: nowrap;
-  }
-  #op1 .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #1a1a1a;
-  }
-  #op1 .grid-item {
-    background: #0d0d0d;
-    padding: 1.5rem;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  #op1 .grid-item:hover { background: #141414; }
-  #op1 .grid-item:first-child { grid-column: span 2; }
-  #op1 .art-placeholder {
-    background: #141414;
-    border: 1px solid #1e1e1e;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    position: relative;
-    overflow: hidden;
-  }
-  #op1 .art-placeholder img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  #op1 .grid-item:first-child .art-placeholder { height: 260px; }
-  #op1 .grid-item:not(:first-child) .art-placeholder { height: 180px; }
-  #op1 .art-placeholder .art-icon {
-    width: 40px; height: 50px;
-    border: 1px solid #2a2a2a;
-    background: linear-gradient(160deg, #1e1a1422, #c9a96e11);
-  }
-  #op1 .art-placeholder span {
-    font-size: 0.6rem;
-    color: #333;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-  #op1 .art-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-weight: 400;
-    color: #c8c0b2;
-    margin-bottom: 0.25rem;
-  }
-  #op1 .art-artist {
-    font-size: 0.7rem;
-    color: #555;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
 
-  /* ══════════════════════════════════════════════════════════════
-     OPCIÓN 2 — BLANCA LIMPIA / CONTEMPORÁNEA
-     Mucho blanco, tipografía sans moderna, grid asimétrico colorido
-  ══════════════════════════════════════════════════════════════ */
-  #op2 {
-    background: #fafaf8;
-    color: #1a1a1a;
-    font-family: 'Syne', sans-serif;
-    min-height: 100vh;
-    padding-bottom: 5rem;
-  }
-  #op2 .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 2.5rem;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  #op2 .nav-logo {
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: #1a1a1a;
-  }
-  #op2 .nav-links {
-    display: flex; gap: 2rem; list-style: none;
-  }
-  #op2 .nav-links a {
-    color: #888;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 400;
-    transition: color 0.2s;
-  }
-  #op2 .nav-links a:hover { color: #1a1a1a; }
-  #op2 .hero {
-    padding: 5rem 2.5rem 3rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  #op2 .hero-tag {
-    display: inline-block;
-    background: #1a1a1a;
-    color: #fff;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-  #op2 .hero h1 {
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 800;
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-    color: #1a1a1a;
-    margin-bottom: 2rem;
-  }
-  #op2 .hero h1 .accent { color: #e8521a; }
-  #op2 .hero-sub {
-    display: flex;
-    gap: 3rem;
-    align-items: flex-start;
-  }
-  #op2 .hero-sub p {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: #666;
-    max-width: 32ch;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-  }
-  #op2 .hero-stats {
-    display: flex; gap: 2.5rem;
-    flex-shrink: 0;
-    padding-top: 0.25rem;
-  }
-  #op2 .stat-num {
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    color: #1a1a1a;
-  }
-  #op2 .stat-label {
-    font-size: 0.7rem;
-    color: #aaa;
-    margin-top: 0.2rem;
-    font-family: 'DM Sans', sans-serif;
-  }
-  #op2 .gallery-grid {
-    padding: 2rem 2.5rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto;
-    gap: 12px;
-  }
-  #op2 .gi { cursor: pointer; overflow: hidden; }
-  #op2 .gi:nth-child(1) { grid-column: span 7; grid-row: span 2; }
-  #op2 .gi:nth-child(2) { grid-column: span 5; }
-  #op2 .gi:nth-child(3) { grid-column: span 5; }
-  #op2 .gi:nth-child(4) { grid-column: span 4; }
-  #op2 .gi:nth-child(5) { grid-column: span 8; }
-  #op2 .gi-inner {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  #op2 .gi-art {
-    flex: 1;
-    min-height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.4s ease;
-  }
-  #op2 .gi-art img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  #op2 .gi:nth-child(1) .gi-art { min-height: 260px; background: #f2e8e0; }
-  #op2 .gi:nth-child(2) .gi-art { background: #e8f0e8; min-height: 140px; }
-  #op2 .gi:nth-child(3) .gi-art { background: #e0e8f2; min-height: 140px; }
-  #op2 .gi:nth-child(4) .gi-art { background: #f5f0e0; min-height: 140px; }
-  #op2 .gi:nth-child(5) .gi-art { background: #f0e8f0; min-height: 140px; }
-  #op2 .gi:hover .gi-art { transform: scale(1.02); }
-  #op2 .gi-art .art-shape-1 {
-    width: 80px; height: 100px;
-    background: #d4a87a;
-    opacity: 0.5;
-  }
-  #op2 .gi:nth-child(2) .art-shape-1 { background: #7ab87a; width: 70px; height: 90px; }
-  #op2 .gi:nth-child(3) .art-shape-1 { background: #7a9cd4; width: 80px; height: 60px; border-radius: 50%; }
-  #op2 .gi:nth-child(4) .art-shape-1 { background: #d4c47a; width: 60px; height: 60px; transform: rotate(45deg); }
-  #op2 .gi:nth-child(5) .art-shape-1 { background: #c47ad4; width: 90px; height: 110px; opacity: 0.4; }
-  #op2 .gi-info {
-    padding: 0.75rem 0 0.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  #op2 .gi-title {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: #1a1a1a;
-  }
-  #op2 .gi-artist {
-    font-size: 0.7rem;
-    color: #999;
-    font-family: 'DM Sans', sans-serif;
-    margin-top: 0.15rem;
-  }
-  #op2 .gi-tag {
-    font-size: 0.65rem;
-    background: #1a1a1a;
-    color: #fff;
-    padding: 0.2rem 0.5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-  }
-  #op2 .gi:nth-child(1) .gi-tag { background: #e8521a; }
+/* ─── CUSTOM CURSOR ────────────────────────────────── */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+}
+.cursor.hover { width: 14px; height: 14px; }
+.cursor-ring.hover { width: 50px; height: 50px; border-color: var(--gold); }
 
-  /* ══════════════════════════════════════════════════════════════
-     OPCIÓN 3 — MINIMALISTA TIPOGRÁFICA
-     Blanco + negro puro, tipografía serif italiano, muy espaciada
-  ══════════════════════════════════════════════════════════════ */
-  #op3 {
-    background: #fff;
-    color: #111;
-    font-family: 'Instrument Serif', serif;
-    min-height: 100vh;
-    padding-bottom: 5rem;
-  }
-  #op3 .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 4rem;
-    border-bottom: 1px solid #111;
-  }
-  #op3 .nav-logo {
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    color: #111;
-    font-family: 'DM Sans', sans-serif;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-  }
-  #op3 .nav-links {
-    display: flex; gap: 3rem; list-style: none;
-  }
-  #op3 .nav-links a {
-    color: #999;
-    text-decoration: none;
-    font-size: 0.7rem;
-    font-family: 'DM Sans', sans-serif;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  #op3 .nav-links a:hover { color: #111; }
-  #op3 .hero {
-    padding: 6rem 4rem 4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: end;
-    border-bottom: 1px solid #eee;
-  }
-  #op3 .hero h1 {
-    font-size: clamp(3rem, 5.5vw, 5rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: #111;
-  }
-  #op3 .hero h1 em { font-style: italic; }
-  #op3 .hero-right {
-    padding-bottom: 0.5rem;
-  }
-  #op3 .hero-right p {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
-    line-height: 1.8;
-    color: #777;
-    font-weight: 300;
-    margin-bottom: 2rem;
-    max-width: 38ch;
-  }
-  #op3 .hero-right .cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #111;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  #op3 .hero-right .cta::after {
-    content: '→';
-    font-size: 1rem;
-    font-family: serif;
-  }
-  #op3 .featured {
-    padding: 4rem;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 2.5rem;
-    align-items: start;
-    border-bottom: 1px solid #eee;
-  }
-  #op3 .featured-main {
-    padding-right: 4rem;
-    border-right: 1px solid #eee;
-  }
-  #op3 .feat-art {
-    background: #f5f5f3;
-    height: 520px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  #op3 .feat-art img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  #op3 .feat-art-num {
-    position: absolute;
-    bottom: 1rem; right: 1rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.65rem;
-    color: #bbb;
-    letter-spacing: 0.1em;
-  }
-  #op3 .feat-title {
-    font-size: 1.6rem;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: #111;
-    margin-bottom: 0.35rem;
-  }
-  #op3 .feat-meta {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    color: #999;
-    letter-spacing: 0.08em;
-  }
-  #op3 .featured-list {
-    padding-left: 2rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  #op3 .fl-item {
-    padding: 1.25rem 0;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-  #op3 .fl-item:last-child { border-bottom: none; }
-  #op3 .fl-item:hover { opacity: 0.6; }
-  #op3 .fl-num {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.65rem;
-    color: #ccc;
-    letter-spacing: 0.12em;
-    margin-bottom: 0.4rem;
-  }
-  #op3 .fl-art {
-    background: #f5f5f3;
-    height: 220px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0.75rem;
-    overflow: hidden;
-    border-radius: 0.6rem;
-  }
-  #op3 .fl-art img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  #op3 .fl-title {
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    color: #111;
-  }
-  #op3 .fl-artist {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.7rem;
-    color: #bbb;
-    margin-top: 0.2rem;
-    letter-spacing: 0.05em;
-  }
+/* ─── LOADER ───────────────────────────────────────── */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #080808;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#loader.hidden { opacity: 0; visibility: hidden; }
 
-  /* ─── MOBILE ────────────────────────────────────────────────── */
-  @media (max-width: 768px) {
-    /* Op1 */
-    #op1 .hero { grid-template-columns: 1fr; }
-    #op1 .hero-right { display: none; }
-    #op1 .hero-left { padding: 2.5rem 1.5rem; border-right: none; }
-    #op1 .nav { padding: 1.25rem 1.5rem; }
-    #op1 .nav-links { display: none; }
-    #op1 .gallery-section { padding: 2.5rem 1.5rem; }
-    #op1 .grid { grid-template-columns: 1fr 1fr; }
-    #op1 .grid-item:first-child { grid-column: span 2; }
-    /* Op2 */
-    #op2 .nav { padding: 1rem 1.5rem; }
-    #op2 .nav-links { display: none; }
-    #op2 .hero { padding: 3rem 1.5rem 2rem; }
-    #op2 .hero-sub { flex-direction: column; gap: 1.5rem; }
-    #op2 .hero-stats { gap: 2rem; }
-    #op2 .gallery-grid { padding: 1.5rem; grid-template-columns: 1fr 1fr; }
-    #op2 .gi:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-    #op2 .gi:nth-child(2), #op2 .gi:nth-child(3),
-    #op2 .gi:nth-child(4), #op2 .gi:nth-child(5) { grid-column: span 1; }
-    #op2 .gi:nth-child(1) .gi-art { min-height: 200px; }
-    /* Op3 */
-    #op3 .nav { padding: 1.5rem 1.5rem; }
-    #op3 .nav-links { display: none; }
-    #op3 .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem 2.5rem; gap: 2rem; }
-    #op3 .featured { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 1.5rem; }
-    #op3 .featured-main { padding-right: 0; border-right: none; border-bottom: 1px solid #eee; padding-bottom: 2rem; margin-bottom: 2rem; }
-    #op3 .featured-list { padding-left: 0; }
-    #op3 .feat-art { height: 360px; }
-    #op3 .fl-art { height: 180px; }
-  }
+.loader-logo {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #f0ebe2;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  animation: loaderFadeIn 0.7s 0.2s forwards;
+}
+.loader-logo em { font-style: italic; color: var(--gold); }
+
+.loader-track {
+  width: 180px;
+  height: 1px;
+  background: #1e1e1e;
+  position: relative;
+  overflow: hidden;
+}
+.loader-bar-fill {
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%;
+  background: var(--gold);
+  width: 0%;
+  animation: loaderBar 1.9s 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+.loader-count {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: var(--text3);
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  animation: loaderFadeIn 0.5s 0.6s forwards;
+}
+
+@keyframes loaderFadeIn { to { opacity: 1; } }
+@keyframes loaderBar { to { width: 100%; } }
+
+/* ─── NAV ──────────────────────────────────────────── */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem 3.5rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(13,13,13,0.93);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 100;
+  opacity: 0;
+  animation: fadeDown 0.6s 2.4s forwards;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #f0ebe2;
+  text-decoration: none;
+}
+.nav-logo em { font-style: italic; color: var(--gold); }
+.nav-links {
+  display: flex; gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text3);
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 0.25s;
+  font-weight: 400;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  border: 1px solid var(--border2);
+  color: var(--text2) !important;
+  padding: 0.45rem 1.2rem;
+  transition: border-color 0.25s, color 0.25s !important;
+}
+.nav-cta:hover { border-color: var(--gold) !important; color: var(--gold) !important; }
+
+/* ─── HERO ─────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 73px);
+  opacity: 0;
+  animation: fadeIn 0.8s 2.6s forwards;
+}
+.hero-left {
+  padding: 5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--border);
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+.hero-eyebrow span {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(3.8rem, 5.5vw, 6.2rem);
+  font-weight: 300;
+  line-height: 1.0;
+  color: #f0ebe2;
+  margin-bottom: 3rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+.hero-desc {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: #5a5a5a;
+  max-width: 32ch;
+  margin-bottom: 2.5rem;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+.btn-primary {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 0.85rem 2.2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: none;
+  font-family: var(--sans);
+  font-weight: 400;
+}
+.btn-primary:hover { background: var(--gold); color: var(--bg); }
+.hero-scroll-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.hero-scroll-link:hover { color: var(--text2); }
+.hero-scroll-link::before {
+  content: '';
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  flex-shrink: 0;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border);
+}
+.stat {
+  padding: 1.5rem 0;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat:last-child { border-right: none; }
+.stat-n {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: #f0ebe2;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.stat-n em { font-style: italic; color: var(--gold); font-size: 1.6rem; }
+.stat-l {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.hero-right {
+  background: var(--bg4);
+  position: relative;
+  overflow: hidden;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 9s ease;
+}
+.hero-right:hover .hero-img { transform: scale(1.05); }
+.hero-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,13,13,0.75) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero-caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+}
+.hero-cap-tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.hero-cap-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #f0ebe2;
+  margin-bottom: 0.2rem;
+}
+.hero-cap-artist {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232,226,217,0.45);
+}
+.hero-ph {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, #141210, #1e1a14, #111);
+}
+.hero-ph::after {
+  content: '';
+  width: 100px; height: 140px;
+  border: 1px solid var(--gold-dim);
+  background: var(--gold-faint);
+}
+
+/* ─── MARQUEE ──────────────────────────────────────── */
+.marquee-wrap {
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--bg2);
+}
+.marquee-track {
+  display: flex;
+  gap: 0;
+  animation: marqueeScroll 32s linear infinite;
+  white-space: nowrap;
+}
+.mi {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0 1.75rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  flex-shrink: 0;
+}
+.mi-dot {
+  width: 3px; height: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ─── SECTION COMMONS ──────────────────────────────── */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+}
+.section-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 300;
+  color: #f0ebe2;
+  line-height: 1.1;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.section-link {
+  font-size: 0.63rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-decoration: none;
+  transition: color 0.25s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.15rem;
+  flex-shrink: 0;
+}
+.section-link::after { content: '→'; font-size: 0.9rem; font-family: serif; }
+.section-link:hover { color: var(--gold); }
+
+/* ─── GALLERY OBRAS ────────────────────────────────── */
+#obras { padding: 5rem 3.5rem; border-bottom: 1px solid var(--border); }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.gallery-item {
+  background: var(--bg);
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.gallery-item:hover { background: #0f0f0f; }
+.gallery-item:first-child { grid-column: span 2; }
+.gallery-item:nth-child(5) { grid-column: span 2; }
+
+.gi-art {
+  overflow: hidden;
+  position: relative;
+  background: var(--bg3);
+}
+.gallery-item:first-child .gi-art { height: 340px; }
+.gallery-item:not(:first-child):not(:nth-child(5)) .gi-art { height: 220px; }
+.gallery-item:nth-child(5) .gi-art { height: 260px; }
+
+.gi-art img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+  filter: brightness(0.9);
+}
+.gallery-item:hover .gi-art img { transform: scale(1.04); filter: brightness(1.02); }
+
+.gi-ph {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, #141210, #1a1610);
+}
+.gi-ph::after {
+  content: '';
+  width: 45px; height: 60px;
+  border: 1px solid var(--border2);
+  background: var(--gold-faint);
+}
+
+.gi-info {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.gi-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #b8b0a2;
+  margin-bottom: 0.2rem;
+  transition: color 0.2s;
+}
+.gallery-item:hover .gi-title { color: #f0ebe2; }
+.gi-artist {
+  font-size: 0.62rem;
+  color: var(--text3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.gi-badge {
+  flex-shrink: 0;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  padding: 0.28rem 0.65rem;
+  white-space: nowrap;
+}
+.gi-badge.gold { border-color: var(--gold-dim); color: var(--gold); }
+
+/* ─── ARTISTAS ─────────────────────────────────────── */
+#artistas { padding: 5rem 3.5rem; border-bottom: 1px solid var(--border); }
+
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.artist-card {
+  background: var(--bg);
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.artist-card:hover { background: var(--bg2); }
+.artist-portrait {
+  height: 270px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg3);
+}
+.artist-portrait img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(50%) brightness(0.8);
+  transition: filter 0.5s, transform 0.6s;
+}
+.artist-card:hover .artist-portrait img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
+.ap-ph {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg, var(--bg3), var(--bg4));
+}
+.ap-ph::after {
+  content: '';
+  width: 48px; height: 68px;
+  border: 1px solid var(--border2);
+  background: var(--gold-faint);
+}
+.artist-info { padding: 1.25rem 1.5rem 1.5rem; }
+.artist-name {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #b8b0a2;
+  margin-bottom: 0.25rem;
+  transition: color 0.2s;
+}
+.artist-card:hover .artist-name { color: #f0ebe2; }
+.artist-disc {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 0.9rem;
+}
+.artist-cta {
+  font-size: 0.68rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.artist-card:hover .artist-cta { opacity: 1; transform: translateY(0); }
+
+/* ─── EXHIBICIÓN ───────────────────────────────────── */
+#exhibicion { padding: 5rem 3.5rem; border-bottom: 1px solid var(--border); }
+
+.exhibit-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+.exhibit-visual {
+  height: 520px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg3);
+}
+.exhibit-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.7);
+}
+.ev-ph {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg, #0e0c0a, #1a1612);
+}
+.ev-ph::after {
+  content: '';
+  width: 120px; height: 160px;
+  border: 1px solid var(--gold-dim);
+  background: var(--gold-faint);
+}
+.exhibit-vis-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(13,13,13,0.35) 0%, transparent 55%);
+}
+.exhibit-badge {
+  position: absolute;
+  top: 2rem; left: 2rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(13,13,13,0.75);
+  padding: 0.38rem 0.8rem;
+  border: 1px solid var(--gold-dim);
+}
+.exhibit-content {
+  background: var(--bg2);
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.exhibit-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.exhibit-eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+.exhibit-title {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 300;
+  line-height: 1.05;
+  color: #f0ebe2;
+  margin-bottom: 1.5rem;
+}
+.exhibit-title em { font-style: italic; color: var(--gold); display: block; }
+.exhibit-desc {
+  font-size: 0.83rem;
+  line-height: 1.95;
+  color: #4a4a4a;
+  margin-bottom: 2.5rem;
+}
+.exhibit-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+.em-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 0.4rem;
+}
+.em-value {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--text2);
+}
+
+/* ─── COLECCIONES ──────────────────────────────────── */
+#colecciones { padding: 5rem 3.5rem; border-bottom: 1px solid var(--border); }
+
+.col-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.col-card {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  height: 320px;
+}
+.col-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.4) saturate(0.5);
+  transition: filter 0.5s, transform 0.7s;
+}
+.col-card:hover img { filter: brightness(0.3) saturate(0.3); transform: scale(1.06); }
+.col-ph {
+  width: 100%; height: 100%;
+  background: linear-gradient(145deg, var(--bg3), var(--bg4));
+  display: flex; align-items: center; justify-content: center;
+}
+.col-ph::after {
+  content: '';
+  width: 55px; height: 75px;
+  border: 1px solid var(--border2);
+  background: var(--gold-faint);
+}
+.col-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.15) 55%, transparent 100%);
+}
+.col-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2rem;
+}
+.col-num {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.65;
+  margin-bottom: 0.5rem;
+}
+.col-title {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 300;
+  color: #f0ebe2;
+  margin-bottom: 0.35rem;
+  line-height: 1.1;
+}
+.col-count {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--text3);
+  transition: color 0.3s;
+}
+.col-card:hover .col-count { color: var(--gold); }
+.col-arrow {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  width: 32px; height: 32px;
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text3);
+  opacity: 0;
+  transform: translate(4px, -4px);
+  transition: opacity 0.3s, transform 0.3s, border-color 0.3s, color 0.3s;
+}
+.col-card:hover .col-arrow { opacity: 1; transform: translate(0,0); border-color: var(--gold-dim); color: var(--gold); }
+
+/* ─── QUOTE ────────────────────────────────────────── */
+.quote-section {
+  padding: 6rem 3.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--bg2);
+}
+.quote-mark {
+  font-family: var(--serif);
+  font-size: 5rem;
+  line-height: 0.5;
+  color: var(--gold-dim);
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+.quote-text {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #d4cec6;
+  line-height: 1.4;
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+.quote-text em { color: var(--gold); font-style: normal; }
+.quote-attr {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.quote-attr::before, .quote-attr::after { content: '—'; }
+
+/* ─── NEWSLETTER ───────────────────────────────────── */
+#newsletter {
+  padding: 6rem 3.5rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.nl-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.nl-eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+.nl-title {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #f0ebe2;
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+.nl-title em { font-style: italic; color: var(--gold); }
+.nl-desc {
+  font-size: 0.83rem;
+  line-height: 1.9;
+  color: var(--text3);
+}
+.nl-form { display: flex; flex-direction: column; gap: 1.1rem; }
+.nl-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border2);
+  padding: 0.85rem 0;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.25s;
+  font-weight: 300;
+}
+.nl-input::placeholder { color: var(--text3); }
+.nl-input:focus { border-color: var(--gold); }
+.nl-submit { align-self: flex-start; margin-top: 0.5rem; }
+.nl-note { font-size: 0.63rem; color: var(--text3); letter-spacing: 0.05em; }
+
+/* ─── FOOTER ───────────────────────────────────────── */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 4.5rem 3.5rem 2.5rem;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 300;
+  color: #f0ebe2;
+  margin-bottom: 1rem;
+  display: block;
+  text-decoration: none;
+}
+.footer-logo em { font-style: italic; color: var(--gold); }
+.footer-tagline {
+  font-size: 0.78rem;
+  line-height: 1.75;
+  color: var(--text3);
+  max-width: 28ch;
+  margin-bottom: 1.75rem;
+}
+.footer-social { display: flex; gap: 0.6rem; }
+.soc-btn {
+  width: 34px; height: 34px;
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--text3);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 0.25s, color 0.25s;
+}
+.soc-btn:hover { border-color: var(--gold); color: var(--gold); }
+.footer-col-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.footer-links a {
+  font-size: 0.78rem;
+  color: var(--text3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text2); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+}
+.footer-copy { font-size: 0.65rem; color: var(--text3); letter-spacing: 0.05em; }
+.footer-legal { display: flex; gap: 2rem; }
+.footer-legal a {
+  font-size: 0.63rem;
+  color: var(--text3);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+.footer-legal a:hover { color: var(--gold); }
+
+/* ─── SCROLL REVEAL ────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay { transition-delay: 0.15s; }
+
+/* ─── KEYFRAMES ────────────────────────────────────── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── MOBILE ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+  nav { padding: 1.25rem 1.5rem; }
+  .nav-links { display: none; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 3rem 1.5rem; border-right: none; }
+  .hero h1 { font-size: clamp(3rem, 10vw, 4.5rem); }
+  .hero-right { display: none; }
+  .hero-stats { grid-template-columns: repeat(3, 1fr); }
+
+  #obras { padding: 3.5rem 1.5rem; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-item:first-child { grid-column: span 2; }
+  .gallery-item:nth-child(5) { grid-column: span 2; }
+  .gallery-item:first-child .gi-art { height: 240px; }
+  .gallery-item:not(:first-child):not(:nth-child(5)) .gi-art { height: 180px; }
+
+  #artistas { padding: 3.5rem 1.5rem; }
+  .artists-grid { grid-template-columns: 1fr 1fr; }
+
+  #exhibicion { padding: 3.5rem 1.5rem; }
+  .exhibit-grid { grid-template-columns: 1fr; }
+  .exhibit-visual { height: 280px; }
+  .exhibit-content { padding: 2rem 1.5rem; }
+
+  #colecciones { padding: 3.5rem 1.5rem; }
+  .col-grid { grid-template-columns: 1fr; }
+  .col-card { height: 240px; }
+
+  .quote-section { padding: 4rem 1.5rem; }
+  .quote-text { font-size: 1.5rem; }
+
+  #newsletter { padding: 4rem 1.5rem; grid-template-columns: 1fr; gap: 2.5rem; }
+  .nl-title { font-size: 2.2rem; }
+
+  footer { padding: 3rem 1.5rem 2rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
 </style>
 </head>
 <body>
 
-<!-- ─────────────────── SELECTOR ─────────────────── -->
-<div class="option-divider">
-  ✦ Opción 1: Editorial Oscura <span>|</span> Opción 2: Contemporánea Blanca <span>|</span> Opción 3: Minimalista Serif ✦
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ─── LOADER ─── -->
+<div id="loader">
+  <div class="loader-logo"><em>Atelier</em></div>
+  <div class="loader-track"><div class="loader-bar-fill"></div></div>
+  <div class="loader-count" id="loaderCount">0%</div>
 </div>
 
-<!-- ══════════════ OPCIÓN 1 ══════════════ -->
-<section id="op1">
-  <nav class="nav">
-    <div class="nav-logo">Atelier</div>
-    <ul class="nav-links">
-      <li><a href="#">Artistas</a></li>
-      <li><a href="#">Colecciones</a></li>
-      <li><a href="#">Exhibiciones</a></li>
-      <li><a href="#">Contacto</a></li>
-    </ul>
-  </nav>
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#" class="nav-logo"><em>Atelier</em></a>
+  <ul class="nav-links">
+    <li><a href="#obras">Obras</a></li>
+    <li><a href="#artistas">Artistas</a></li>
+    <li><a href="#exhibicion">Exhibiciones</a></li>
+    <li><a href="#colecciones">Colecciones</a></li>
+    <li><a href="#newsletter" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
 
-  <div class="hero">
-    <div class="hero-left">
-      <div class="eyebrow">Galería de arte contemporáneo</div>
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-left">
+    <div>
+      <div class="hero-eyebrow"><span>Galería de arte contemporáneo</span></div>
       <h1>Arte que<br>desafía <em>lo<br>convencional</em></h1>
-      <p>Una curaduría de artistas emergentes y consagrados. Obras únicas, voces genuinas.</p>
-      <a class="cta">Ver colección</a>
+      <p class="hero-desc">Una curaduría de artistas emergentes y consagrados. Obras únicas, voces genuinas, espacios que invitan a sentir.</p>
+      <div class="hero-actions">
+        <a href="#obras" class="btn-primary">Ver colección</a>
+        <a href="#artistas" class="hero-scroll-link">Explorar artistas</a>
+      </div>
     </div>
-    <div class="hero-right">
-      <div class="mock-img-1">
-        <img src="img/arte5.avif" alt="Obra destacada de la galería" loading="lazy">
-        <span>obra destacada</span>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-n">48<em>+</em></div>
+        <div class="stat-l">Artistas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">320</div>
+        <div class="stat-l">Obras</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">12</div>
+        <div class="stat-l">Exhibiciones</div>
       </div>
     </div>
   </div>
+  <div class="hero-right" id="heroRight">
+    <img src="img/arte5.avif" alt="Obra destacada" class="hero-img" id="heroImg">
+    <div class="hero-img-overlay"></div>
+    <div class="hero-caption">
+      <div class="hero-cap-tag">Obra destacada</div>
+      <div class="hero-cap-title">Sin nombre todavía</div>
+      <div class="hero-cap-artist">Valentina Cruz — 2024</div>
+    </div>
+  </div>
+</section>
 
-  <div class="gallery-section">
-    <div class="section-label"><span>Obras recientes</span></div>
-    <div class="grid">
-      <div class="grid-item">
-        <div class="art-placeholder"><img src="img/arte1.webp" alt="Sin título, 2024" loading="lazy"></div>
-        <div class="art-title">Sin título, 2024</div>
-        <div class="art-artist">Valentina Cruz</div>
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="mi"><span class="mi-dot"></span>Pintura contemporánea</span>
+    <span class="mi"><span class="mi-dot"></span>Escultura y volumen</span>
+    <span class="mi"><span class="mi-dot"></span>Fotografía de autor</span>
+    <span class="mi"><span class="mi-dot"></span>Arte digital</span>
+    <span class="mi"><span class="mi-dot"></span>Técnica mixta</span>
+    <span class="mi"><span class="mi-dot"></span>Acuarela y gouache</span>
+    <span class="mi"><span class="mi-dot"></span>Grabado y serigrafía</span>
+    <span class="mi"><span class="mi-dot"></span>Instalación artística</span>
+    <span class="mi"><span class="mi-dot"></span>Pintura contemporánea</span>
+    <span class="mi"><span class="mi-dot"></span>Escultura y volumen</span>
+    <span class="mi"><span class="mi-dot"></span>Fotografía de autor</span>
+    <span class="mi"><span class="mi-dot"></span>Arte digital</span>
+    <span class="mi"><span class="mi-dot"></span>Técnica mixta</span>
+    <span class="mi"><span class="mi-dot"></span>Acuarela y gouache</span>
+    <span class="mi"><span class="mi-dot"></span>Grabado y serigrafía</span>
+    <span class="mi"><span class="mi-dot"></span>Instalación artística</span>
+  </div>
+</div>
+
+<!-- ─── OBRAS ─── -->
+<section id="obras">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-eyebrow">Galería</span>
+      <h2 class="section-title">Obras <em>recientes</em></h2>
+    </div>
+    <a href="#" class="section-link">Ver todas las obras</a>
+  </div>
+  <div class="gallery-grid reveal reveal-delay">
+    <div class="gallery-item">
+      <div class="gi-art">
+        <img src="img/arte1.webp" alt="Sin título, 2024" onerror="this.outerHTML='<div class=gi-ph></div>'">
       </div>
-      <div class="grid-item">
-        <div class="art-placeholder"><img src="img/arte2.jpg" alt="Paisaje interior" loading="lazy"></div>
-        <div class="art-title">Paisaje interior</div>
-        <div class="art-artist">Marco Silva</div>
+      <div class="gi-info">
+        <div><div class="gi-title">Sin título, 2024</div><div class="gi-artist">Valentina Cruz</div></div>
+        <div class="gi-badge gold">Destacada</div>
       </div>
-      <div class="grid-item">
-        <div class="art-placeholder"><img src="img/arte3.jpg" alt="Fragmento III" loading="lazy"></div>
-        <div class="art-title">Fragmento III</div>
-        <div class="art-artist">Ana Reyes</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gi-art">
+        <img src="img/arte2.jpg" alt="Paisaje interior" onerror="this.outerHTML='<div class=gi-ph></div>'">
       </div>
-      <div class="grid-item">
-        <div class="art-placeholder"><img src="img/arte6.jpg" alt="Luz urbana" loading="lazy"></div>
-        <div class="art-title">Luz urbana</div>
-        <div class="art-artist">María Ortega</div>
+      <div class="gi-info">
+        <div><div class="gi-title">Paisaje interior</div><div class="gi-artist">Marco Silva</div></div>
+        <div class="gi-badge">Óleo</div>
       </div>
-      <div class="grid-item">
-        <div class="art-placeholder"><img src="img/arte7.jpg" alt="Trazo calmado" loading="lazy"></div>
-        <div class="art-title">Trazo calmado</div>
-        <div class="art-artist">Lucía Vélez</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gi-art">
+        <img src="img/arte3.jpg" alt="Fragmento III" onerror="this.outerHTML='<div class=gi-ph></div>'">
+      </div>
+      <div class="gi-info">
+        <div><div class="gi-title">Fragmento III</div><div class="gi-artist">Ana Reyes</div></div>
+        <div class="gi-badge">Mixta</div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gi-art">
+        <img src="img/arte6.jpg" alt="Luz urbana" onerror="this.outerHTML='<div class=gi-ph></div>'">
+      </div>
+      <div class="gi-info">
+        <div><div class="gi-title">Luz urbana</div><div class="gi-artist">María Ortega</div></div>
+        <div class="gi-badge">Nuevo</div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gi-art">
+        <img src="img/arte7.jpg" alt="Trazo calmado" onerror="this.outerHTML='<div class=gi-ph></div>'">
+      </div>
+      <div class="gi-info">
+        <div><div class="gi-title">Trazo calmado</div><div class="gi-artist">Lucía Vélez</div></div>
+        <div class="gi-badge">Acuarela</div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="option-divider" style="background:#e8521a; color:#fff;">
-  ↑ Opción 1 &nbsp;&nbsp;•&nbsp;&nbsp; Opción 2 ↓
-</div>
-
-<!-- ══════════════ OPCIÓN 2 ══════════════ -->
-<section id="op2">
-  <nav class="nav">
-    <div class="nav-logo">FORMA°</div>
-    <ul class="nav-links">
-      <li><a href="#">Artistas</a></li>
-      <li><a href="#">Galería</a></li>
-      <li><a href="#">Sobre nosotros</a></li>
-    </ul>
-  </nav>
-
-  <div class="hero">
-    <div class="hero-tag">Arte contemporáneo online</div>
-    <h1>Donde<br>el arte<br><span class="accent">te encuentra</span></h1>
-    <div class="hero-sub">
-      <p>Plataforma de arte digital para artistas emergentes y coleccionistas que buscan obras auténticas y originales.</p>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num">48+</div>
-          <div class="stat-label">Artistas</div>
-        </div>
-        <div>
-          <div class="stat-num">320</div>
-          <div class="stat-label">Obras</div>
-        </div>
-      </div>
+<!-- ─── ARTISTAS ─── -->
+<section id="artistas">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-eyebrow">Creadores</span>
+      <h2 class="section-title">Nuestros <em>artistas</em></h2>
     </div>
+    <a href="#" class="section-link">Ver todos</a>
   </div>
-
-  <div class="gallery-grid">
-    <div class="gi">
-      <div class="gi-inner">
-        <div class="gi-art"><img src="img/arte4.png" alt="Horizonte roto" loading="lazy"></div>
-        <div class="gi-info">
-          <div>
-            <div class="gi-title">Horizonte roto</div>
-            <div class="gi-artist">Valentina Cruz</div>
-          </div>
-          <div class="gi-tag" style="background:#e8521a;">Destacada</div>
-        </div>
+  <div class="artists-grid reveal reveal-delay">
+    <div class="artist-card">
+      <div class="artist-portrait"><img src="img/artista1.jpg" alt="Valentina Cruz" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
+      <div class="artist-info">
+        <div class="artist-name">Valentina Cruz</div>
+        <div class="artist-disc">Pintura — Óleo</div>
+        <div class="artist-cta">12 obras disponibles →</div>
       </div>
     </div>
-    <div class="gi">
-      <div class="gi-inner">
-        <div class="gi-art"><img src="img/arte6.jpg" alt="Verde urbano" loading="lazy"></div>
-        <div class="gi-info">
-          <div>
-            <div class="gi-title">Verde urbano</div>
-            <div class="gi-artist">Marco Silva</div>
-          </div>
-          <div class="gi-tag">Nuevo</div>
-        </div>
+    <div class="artist-card">
+      <div class="artist-portrait"><img src="img/artista2.jpg" alt="Marco Silva" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
+      <div class="artist-info">
+        <div class="artist-name">Marco Silva</div>
+        <div class="artist-disc">Escultura — Mixta</div>
+        <div class="artist-cta">8 obras disponibles →</div>
       </div>
     </div>
-    <div class="gi">
-      <div class="gi-inner">
-        <div class="gi-art"><img src="img/arte7.jpg" alt="Calma profunda" loading="lazy"></div>
-        <div class="gi-info">
-          <div>
-            <div class="gi-title">Calma profunda</div>
-            <div class="gi-artist">Ana Reyes</div>
-          </div>
-          <div class="gi-tag">Óleo</div>
-        </div>
+    <div class="artist-card">
+      <div class="artist-portrait"><img src="img/artista3.jpg" alt="Ana Reyes" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
+      <div class="artist-info">
+        <div class="artist-name">Ana Reyes</div>
+        <div class="artist-disc">Fotografía — Digital</div>
+        <div class="artist-cta">21 obras disponibles →</div>
       </div>
     </div>
-    <div class="gi">
-      <div class="gi-inner">
-        <div class="gi-art"><img src="img/arte1.webp" alt="Fragmento IV" loading="lazy"></div>
-        <div class="gi-info">
-          <div>
-            <div class="gi-title">Fragmento IV</div>
-            <div class="gi-artist">Luis Rojas</div>
-          </div>
-          <div class="gi-tag">Mixta</div>
-        </div>
-      </div>
-    </div>
-    <div class="gi">
-      <div class="gi-inner">
-        <div class="gi-art"><img src="img/arte2.jpg" alt="Memoria II" loading="lazy"></div>
-        <div class="gi-info">
-          <div>
-            <div class="gi-title">Memoria II</div>
-            <div class="gi-artist">Sofía Ibáñez</div>
-          </div>
-          <div class="gi-tag">Acuarela</div>
-        </div>
+    <div class="artist-card">
+      <div class="artist-portrait"><img src="img/artista4.jpg" alt="Lucía Vélez" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
+      <div class="artist-info">
+        <div class="artist-name">Lucía Vélez</div>
+        <div class="artist-disc">Acuarela — Papel</div>
+        <div class="artist-cta">6 obras disponibles →</div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="option-divider" style="background:#111; color:#fff;">
-  ↑ Opción 2 &nbsp;&nbsp;•&nbsp;&nbsp; Opción 3 ↓
-</div>
-
-<!-- ══════════════ OPCIÓN 3 ══════════════ -->
-<section id="op3">
-  <nav class="nav">
-    <div class="nav-logo">Galería Blanca</div>
-    <ul class="nav-links">
-      <li><a href="#">Artistas</a></li>
-      <li><a href="#">Obras</a></li>
-      <li><a href="#">Contacto</a></li>
-    </ul>
-  </nav>
-
-  <div class="hero">
-    <h1>Arte<br>que <em>respira</em><br>con vos</h1>
-    <div class="hero-right">
-      <p>Una galería pensada para que las obras hablen. Sin ruido, sin distracción. Solo arte y quienes lo crean.</p>
-      <a class="cta">Explorar la colección</a>
+<!-- ─── EXHIBICIÓN ─── -->
+<section id="exhibicion">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-eyebrow">En cartel</span>
+      <h2 class="section-title">Exhibición <em>destacada</em></h2>
     </div>
   </div>
-
-  <div class="featured">
-    <div class="featured-main">
-      <div class="feat-art">
-        <img src="img/arte5.avif" alt="Sin nombre todavía" loading="lazy">
-        <div class="feat-art-num">01 / 12</div>
-      </div>
-      <div class="feat-title">Sin nombre todavía</div>
-      <div class="feat-meta" style="margin-top:0.3rem;">Valentina Cruz — Óleo sobre tela, 2024</div>
+  <div class="exhibit-grid reveal reveal-delay">
+    <div class="exhibit-visual">
+      <img src="img/artefamoso.jpg" alt="Exhibición destacada" onerror="this.outerHTML='<div class=ev-ph></div>'">
+      <div class="exhibit-vis-overlay"></div>
+      <div class="exhibit-badge">Exhibición activa</div>
     </div>
-    <div class="featured-list">
-      <div class="fl-item">
-        <div class="fl-num">02</div>
-        <div class="fl-art"><img src="img/arte4.png" alt="Paisaje de adentro" loading="lazy"></div>
-        <div class="fl-title">Paisaje de adentro</div>
-        <div class="fl-artist">Marco Silva</div>
+    <div class="exhibit-content">
+      <div>
+        <div class="exhibit-eyebrow">Mayo — Julio 2025</div>
+        <h3 class="exhibit-title">Formas de <em>lo invisible</em></h3>
+        <p class="exhibit-desc">Una exploración colectiva que reúne a seis artistas en torno a aquello que no se ve pero se siente. Obras que interrogan la ausencia, el tiempo y la memoria desde lenguajes visuales radicalmente distintos.</p>
+        <div class="exhibit-meta">
+          <div><div class="em-label">Apertura</div><div class="em-value">3 de Mayo, 2025</div></div>
+          <div><div class="em-label">Cierre</div><div class="em-value">28 de Julio, 2025</div></div>
+          <div><div class="em-label">Artistas</div><div class="em-value">6 participantes</div></div>
+          <div><div class="em-label">Obras</div><div class="em-value">34 piezas</div></div>
+        </div>
       </div>
-      <div class="fl-item">
-        <div class="fl-num">03</div>
-        <div class="fl-art"><img src="img/arte6.jpg" alt="La espera" loading="lazy"></div>
-        <div class="fl-title">La espera</div>
-        <div class="fl-artist">Ana Reyes</div>
+      <a href="#" class="btn-primary">Ver exhibición completa</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COLECCIONES ─── -->
+<section id="colecciones">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-eyebrow">Temáticas</span>
+      <h2 class="section-title">Explorar <em>colecciones</em></h2>
+    </div>
+    <a href="#" class="section-link">Ver todas</a>
+  </div>
+  <div class="col-grid reveal reveal-delay">
+    <div class="col-card">
+      <img src="img/paisaje.jpg" alt="Colección Paisaje & Territorio" onerror="this.outerHTML='<div class=col-ph></div>'">
+      <div class="col-overlay"></div>
+      <div class="col-arrow">→</div>
+      <div class="col-content">
+        <div class="col-num">01</div>
+        <div class="col-title">Paisaje & Territorio</div>
+        <div class="col-count">24 obras</div>
       </div>
-      <div class="fl-item">
-        <div class="fl-num">04</div>
-        <div class="fl-art"><img src="img/arte7.jpg" alt="Forma libre" loading="lazy"></div>
-        <div class="fl-title">Forma libre</div>
-        <div class="fl-artist">Luis Rojas</div>
+    </div>
+    <div class="col-card">
+      <img src="img/identidad.jpg" alt="Colección Cuerpo & Identidad" onerror="this.outerHTML='<div class=col-ph></div>'">
+      <div class="col-overlay"></div>
+      <div class="col-arrow">→</div>
+      <div class="col-content">
+        <div class="col-num">02</div>
+        <div class="col-title">Cuerpo & Identidad</div>
+        <div class="col-count">18 obras</div>
+      </div>
+    </div>
+    <div class="col-card">
+      <img src="img/abstraccion.jpg" alt="Colección Abstracción pura" onerror="this.outerHTML='<div class=col-ph></div>'">
+      <div class="col-overlay"></div>
+      <div class="col-arrow">→</div>
+      <div class="col-content">
+        <div class="col-num">03</div>
+        <div class="col-title">Abstracción pura</div>
+        <div class="col-count">31 obras</div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="option-divider">
-  ✦ Fin de las 3 propuestas — ¿Cuál te llama más? ✦
+<!-- ─── QUOTE ─── -->
+<div class="quote-section reveal">
+  <div class="quote-mark">"</div>
+  <p class="quote-text">El arte no reproduce lo visible, sino que <em>hace visible</em> lo que de otra forma permanecería oculto.</p>
+  <div class="quote-attr">Paul Klee</div>
 </div>
 
+<!-- ─── NEWSLETTER ─── -->
+<section id="newsletter">
+  <div class="reveal">
+    <div class="nl-eyebrow">Comunidad</div>
+    <h2 class="nl-title">Recibí las <em>novedades</em> de la galería</h2>
+    <p class="nl-desc">Nuevas obras, apertura de exhibiciones, entrevistas con artistas y acceso anticipado a colecciones exclusivas.</p>
+  </div>
+  <div class="reveal reveal-delay">
+    <div class="nl-form">
+      <input type="text" class="nl-input" placeholder="Tu nombre">
+      <input type="email" class="nl-input" placeholder="Tu correo electrónico">
+      <button class="btn-primary nl-submit">Suscribirme</button>
+      <p class="nl-note">Sin spam. Podés darte de baja cuando quieras.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="footer-logo"><em>Atelier</em></a>
+      <p class="footer-tagline">Una galería de arte contemporáneo dedicada a conectar artistas y amantes del arte desde cualquier lugar del mundo.</p>
+      <div class="footer-social">
+        <a href="#" class="soc-btn">Ig</a>
+        <a href="#" class="soc-btn">Fb</a>
+        <a href="#" class="soc-btn">Tw</a>
+        <a href="#" class="soc-btn">Yt</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Galería</div>
+      <ul class="footer-links">
+        <li><a href="#obras">Obras</a></li>
+        <li><a href="#colecciones">Colecciones</a></li>
+        <li><a href="#exhibicion">Exhibiciones</a></li>
+        <li><a href="#">Novedades</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Artistas</div>
+      <ul class="footer-links">
+        <li><a href="#artistas">Directorio</a></li>
+        <li><a href="#">Quiero exponer</a></li>
+        <li><a href="#">Residencias</a></li>
+        <li><a href="#">Entrevistas</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Nosotros</div>
+      <ul class="footer-links">
+        <li><a href="#">Sobre Atelier</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Prensa</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Atelier Galería. Todos los derechos reservados.</div>
+    <div class="footer-legal">
+      <a href="#">Privacidad</a>
+      <a href="#">Términos</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Loader
+(function() {
+  const loader = document.getElementById('loader');
+  const countEl = document.getElementById('loaderCount');
+  document.body.style.overflow = 'hidden';
+  let count = 0;
+  const iv = setInterval(() => {
+    count = Math.min(count + Math.floor(Math.random() * 7) + 3, 100);
+    if (countEl) countEl.textContent = count + '%';
+    if (count >= 100) {
+      clearInterval(iv);
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 350);
+    }
+  }, 55);
+  // Safety fallback
+  setTimeout(() => {
+    loader.classList.add('hidden');
+    document.body.style.overflow = '';
+  }, 2900);
+})();
+
+// ── Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = -200, my = -200, rx = -200, ry = -200;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+document.addEventListener('mouseover', e => {
+  const el = e.target.closest('a, button, .gallery-item, .artist-card, .col-card');
+  if (el) { cursor.classList.add('hover'); ring.classList.add('hover'); }
+  else { cursor.classList.remove('hover'); ring.classList.remove('hover'); }
+});
+(function animCursor() {
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  rx += (mx - rx) * 0.13; ry += (my - ry) * 0.13;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+})();
+
+// ── Hero image fallback
+const heroImg = document.getElementById('heroImg');
+if (heroImg) heroImg.addEventListener('error', () => {
+  const hr = document.getElementById('heroRight');
+  if (hr) hr.innerHTML = '<div class="hero-ph"></div>';
+});
+
+// ── Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
