@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería de Arte — 3 Propuestas de Diseño</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ─── DIVIDER ─────────────────────────────────────────────── */
+  .option-divider {
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 1.2rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .option-divider span { opacity: 0.45; margin: 0 1rem; }
+
+  /* ══════════════════════════════════════════════════════════════
+     OPCIÓN 1 — EDITORIAL OSCURA
+     Lujo, tipografía serif grande, fondo casi negro, detalles dorados
+  ══════════════════════════════════════════════════════════════ */
+  #op1 {
+    background: #0d0d0d;
+    color: #e8e2d9;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 5rem;
+  }
+  #op1 .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
+  }
+  #op1 .hero-left {
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-right: 1px solid #2a2a2a;
+  }
+  #op1 .hero-left .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c9a96e;
+    margin-bottom: 1.5rem;
+  }
+  #op1 .hero-left h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: #f0ebe2;
+    margin-bottom: 1.5rem;
+  }
+  #op1 .hero-left h1 em {
+    font-style: italic;
+    color: #c9a96e;
+  }
+  #op1 .hero-left p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #888;
+    max-width: 28ch;
+    margin-bottom: 2.5rem;
+  }
+  #op1 .hero-left .cta {
+    display: inline-block;
+    border: 1px solid #c9a96e;
+    color: #c9a96e;
+    padding: 0.75rem 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    width: fit-content;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  #op1 .hero-left .cta:hover { background: #c9a96e; color: #0d0d0d; }
+  #op1 .hero-right {
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #op1 .mock-img-1 {
+    width: 100%; height: 100%;
+    position: relative;
+    background: linear-gradient(135deg, #1e1a14 0%, #2d2417 40%, #1a1410 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+  }
+  #op1 .mock-img-1 img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #op1 .mock-img-1::before {
+    content: '';
+    width: 120px; height: 160px;
+    background: linear-gradient(160deg, #c9a96e22, #c9a96e08);
+    border: 1px solid #c9a96e44;
+    display: block;
+  }
+  #op1 .mock-img-1 span {
+    color: #c9a96e66;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  #op1 .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  #op1 .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #f0ebe2;
+  }
+  #op1 .nav-links {
+    display: flex; gap: 2.5rem;
+    list-style: none;
+  }
+  #op1 .nav-links a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  #op1 .nav-links a:hover { color: #c9a96e; }
+  #op1 .gallery-section { padding: 4rem 3rem; }
+  #op1 .section-label {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  #op1 .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #222;
+  }
+  #op1 .section-label span {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c9a96e;
+    white-space: nowrap;
+  }
+  #op1 .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #1a1a1a;
+  }
+  #op1 .grid-item {
+    background: #0d0d0d;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  #op1 .grid-item:hover { background: #141414; }
+  #op1 .grid-item:first-child { grid-column: span 2; }
+  #op1 .art-placeholder {
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #op1 .art-placeholder img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #op1 .grid-item:first-child .art-placeholder { height: 260px; }
+  #op1 .grid-item:not(:first-child) .art-placeholder { height: 180px; }
+  #op1 .art-placeholder .art-icon {
+    width: 40px; height: 50px;
+    border: 1px solid #2a2a2a;
+    background: linear-gradient(160deg, #1e1a1422, #c9a96e11);
+  }
+  #op1 .art-placeholder span {
+    font-size: 0.6rem;
+    color: #333;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  #op1 .art-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: #c8c0b2;
+    margin-bottom: 0.25rem;
+  }
+  #op1 .art-artist {
+    font-size: 0.7rem;
+    color: #555;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     OPCIÓN 2 — BLANCA LIMPIA / CONTEMPORÁNEA
+     Mucho blanco, tipografía sans moderna, grid asimétrico colorido
+  ══════════════════════════════════════════════════════════════ */
+  #op2 {
+    background: #fafaf8;
+    color: #1a1a1a;
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 5rem;
+  }
+  #op2 .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2.5rem;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  #op2 .nav-logo {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
+  }
+  #op2 .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  #op2 .nav-links a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  #op2 .nav-links a:hover { color: #1a1a1a; }
+  #op2 .hero {
+    padding: 5rem 2.5rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  #op2 .hero-tag {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  #op2 .hero h1 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: #1a1a1a;
+    margin-bottom: 2rem;
+  }
+  #op2 .hero h1 .accent { color: #e8521a; }
+  #op2 .hero-sub {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+  #op2 .hero-sub p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #666;
+    max-width: 32ch;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+  #op2 .hero-stats {
+    display: flex; gap: 2.5rem;
+    flex-shrink: 0;
+    padding-top: 0.25rem;
+  }
+  #op2 .stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #1a1a1a;
+  }
+  #op2 .stat-label {
+    font-size: 0.7rem;
+    color: #aaa;
+    margin-top: 0.2rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+  #op2 .gallery-grid {
+    padding: 2rem 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 12px;
+  }
+  #op2 .gi { cursor: pointer; overflow: hidden; }
+  #op2 .gi:nth-child(1) { grid-column: span 7; grid-row: span 2; }
+  #op2 .gi:nth-child(2) { grid-column: span 5; }
+  #op2 .gi:nth-child(3) { grid-column: span 5; }
+  #op2 .gi:nth-child(4) { grid-column: span 4; }
+  #op2 .gi:nth-child(5) { grid-column: span 8; }
+  #op2 .gi-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  #op2 .gi-art {
+    flex: 1;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+  }
+  #op2 .gi-art img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #op2 .gi:nth-child(1) .gi-art { min-height: 260px; background: #f2e8e0; }
+  #op2 .gi:nth-child(2) .gi-art { background: #e8f0e8; min-height: 140px; }
+  #op2 .gi:nth-child(3) .gi-art { background: #e0e8f2; min-height: 140px; }
+  #op2 .gi:nth-child(4) .gi-art { background: #f5f0e0; min-height: 140px; }
+  #op2 .gi:nth-child(5) .gi-art { background: #f0e8f0; min-height: 140px; }
+  #op2 .gi:hover .gi-art { transform: scale(1.02); }
+  #op2 .gi-art .art-shape-1 {
+    width: 80px; height: 100px;
+    background: #d4a87a;
+    opacity: 0.5;
+  }
+  #op2 .gi:nth-child(2) .art-shape-1 { background: #7ab87a; width: 70px; height: 90px; }
+  #op2 .gi:nth-child(3) .art-shape-1 { background: #7a9cd4; width: 80px; height: 60px; border-radius: 50%; }
+  #op2 .gi:nth-child(4) .art-shape-1 { background: #d4c47a; width: 60px; height: 60px; transform: rotate(45deg); }
+  #op2 .gi:nth-child(5) .art-shape-1 { background: #c47ad4; width: 90px; height: 110px; opacity: 0.4; }
+  #op2 .gi-info {
+    padding: 0.75rem 0 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  #op2 .gi-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #1a1a1a;
+  }
+  #op2 .gi-artist {
+    font-size: 0.7rem;
+    color: #999;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 0.15rem;
+  }
+  #op2 .gi-tag {
+    font-size: 0.65rem;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 0.2rem 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  #op2 .gi:nth-child(1) .gi-tag { background: #e8521a; }
+
+  /* ══════════════════════════════════════════════════════════════
+     OPCIÓN 3 — MINIMALISTA TIPOGRÁFICA
+     Blanco + negro puro, tipografía serif italiano, muy espaciada
+  ══════════════════════════════════════════════════════════════ */
+  #op3 {
+    background: #fff;
+    color: #111;
+    font-family: 'Instrument Serif', serif;
+    min-height: 100vh;
+    padding-bottom: 5rem;
+  }
+  #op3 .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    border-bottom: 1px solid #111;
+  }
+  #op3 .nav-logo {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: #111;
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+  }
+  #op3 .nav-links {
+    display: flex; gap: 3rem; list-style: none;
+  }
+  #op3 .nav-links a {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  #op3 .nav-links a:hover { color: #111; }
+  #op3 .hero {
+    padding: 6rem 4rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    border-bottom: 1px solid #eee;
+  }
+  #op3 .hero h1 {
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #111;
+  }
+  #op3 .hero h1 em { font-style: italic; }
+  #op3 .hero-right {
+    padding-bottom: 0.5rem;
+  }
+  #op3 .hero-right p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: #777;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    max-width: 38ch;
+  }
+  #op3 .hero-right .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #111;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #op3 .hero-right .cta::after {
+    content: '→';
+    font-size: 1rem;
+    font-family: serif;
+  }
+  #op3 .featured {
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    border-bottom: 1px solid #eee;
+  }
+  #op3 .featured-main {
+    padding-right: 4rem;
+    border-right: 1px solid #eee;
+  }
+  #op3 .feat-art {
+    background: #f5f5f3;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #op3 .feat-art img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #op3 .feat-art-num {
+    position: absolute;
+    bottom: 1rem; right: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    color: #bbb;
+    letter-spacing: 0.1em;
+  }
+  #op3 .feat-title {
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: #111;
+    margin-bottom: 0.35rem;
+  }
+  #op3 .feat-meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.08em;
+  }
+  #op3 .featured-list {
+    padding-left: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  #op3 .fl-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  #op3 .fl-item:last-child { border-bottom: none; }
+  #op3 .fl-item:hover { opacity: 0.6; }
+  #op3 .fl-num {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    color: #ccc;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.4rem;
+  }
+  #op3 .fl-art {
+    background: #f5f5f3;
+    height: 220px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    border-radius: 0.6rem;
+  }
+  #op3 .fl-art img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #op3 .fl-title {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #111;
+  }
+  #op3 .fl-artist {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    color: #bbb;
+    margin-top: 0.2rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── MOBILE ────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    /* Op1 */
+    #op1 .hero { grid-template-columns: 1fr; }
+    #op1 .hero-right { display: none; }
+    #op1 .hero-left { padding: 2.5rem 1.5rem; border-right: none; }
+    #op1 .nav { padding: 1.25rem 1.5rem; }
+    #op1 .nav-links { display: none; }
+    #op1 .gallery-section { padding: 2.5rem 1.5rem; }
+    #op1 .grid { grid-template-columns: 1fr 1fr; }
+    #op1 .grid-item:first-child { grid-column: span 2; }
+    /* Op2 */
+    #op2 .nav { padding: 1rem 1.5rem; }
+    #op2 .nav-links { display: none; }
+    #op2 .hero { padding: 3rem 1.5rem 2rem; }
+    #op2 .hero-sub { flex-direction: column; gap: 1.5rem; }
+    #op2 .hero-stats { gap: 2rem; }
+    #op2 .gallery-grid { padding: 1.5rem; grid-template-columns: 1fr 1fr; }
+    #op2 .gi:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+    #op2 .gi:nth-child(2), #op2 .gi:nth-child(3),
+    #op2 .gi:nth-child(4), #op2 .gi:nth-child(5) { grid-column: span 1; }
+    #op2 .gi:nth-child(1) .gi-art { min-height: 200px; }
+    /* Op3 */
+    #op3 .nav { padding: 1.5rem 1.5rem; }
+    #op3 .nav-links { display: none; }
+    #op3 .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem 2.5rem; gap: 2rem; }
+    #op3 .featured { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 1.5rem; }
+    #op3 .featured-main { padding-right: 0; border-right: none; border-bottom: 1px solid #eee; padding-bottom: 2rem; margin-bottom: 2rem; }
+    #op3 .featured-list { padding-left: 0; }
+    #op3 .feat-art { height: 360px; }
+    #op3 .fl-art { height: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─────────────────── SELECTOR ─────────────────── -->
+<div class="option-divider">
+  ✦ Opción 1: Editorial Oscura <span>|</span> Opción 2: Contemporánea Blanca <span>|</span> Opción 3: Minimalista Serif ✦
+</div>
+
+<!-- ══════════════ OPCIÓN 1 ══════════════ -->
+<section id="op1">
+  <nav class="nav">
+    <div class="nav-logo">Atelier</div>
+    <ul class="nav-links">
+      <li><a href="#">Artistas</a></li>
+      <li><a href="#">Colecciones</a></li>
+      <li><a href="#">Exhibiciones</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">Galería de arte contemporáneo</div>
+      <h1>Arte que<br>desafía <em>lo<br>convencional</em></h1>
+      <p>Una curaduría de artistas emergentes y consagrados. Obras únicas, voces genuinas.</p>
+      <a class="cta">Ver colección</a>
+    </div>
+    <div class="hero-right">
+      <div class="mock-img-1">
+        <img src="img/arte5.avif" alt="Obra destacada de la galería" loading="lazy">
+        <span>obra destacada</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-section">
+    <div class="section-label"><span>Obras recientes</span></div>
+    <div class="grid">
+      <div class="grid-item">
+        <div class="art-placeholder"><img src="img/arte1.webp" alt="Sin título, 2024" loading="lazy"></div>
+        <div class="art-title">Sin título, 2024</div>
+        <div class="art-artist">Valentina Cruz</div>
+      </div>
+      <div class="grid-item">
+        <div class="art-placeholder"><img src="img/arte2.jpg" alt="Paisaje interior" loading="lazy"></div>
+        <div class="art-title">Paisaje interior</div>
+        <div class="art-artist">Marco Silva</div>
+      </div>
+      <div class="grid-item">
+        <div class="art-placeholder"><img src="img/arte3.jpg" alt="Fragmento III" loading="lazy"></div>
+        <div class="art-title">Fragmento III</div>
+        <div class="art-artist">Ana Reyes</div>
+      </div>
+      <div class="grid-item">
+        <div class="art-placeholder"><img src="img/arte6.jpg" alt="Luz urbana" loading="lazy"></div>
+        <div class="art-title">Luz urbana</div>
+        <div class="art-artist">María Ortega</div>
+      </div>
+      <div class="grid-item">
+        <div class="art-placeholder"><img src="img/arte7.jpg" alt="Trazo calmado" loading="lazy"></div>
+        <div class="art-title">Trazo calmado</div>
+        <div class="art-artist">Lucía Vélez</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="option-divider" style="background:#e8521a; color:#fff;">
+  ↑ Opción 1 &nbsp;&nbsp;•&nbsp;&nbsp; Opción 2 ↓
+</div>
+
+<!-- ══════════════ OPCIÓN 2 ══════════════ -->
+<section id="op2">
+  <nav class="nav">
+    <div class="nav-logo">FORMA°</div>
+    <ul class="nav-links">
+      <li><a href="#">Artistas</a></li>
+      <li><a href="#">Galería</a></li>
+      <li><a href="#">Sobre nosotros</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">Arte contemporáneo online</div>
+    <h1>Donde<br>el arte<br><span class="accent">te encuentra</span></h1>
+    <div class="hero-sub">
+      <p>Plataforma de arte digital para artistas emergentes y coleccionistas que buscan obras auténticas y originales.</p>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">48+</div>
+          <div class="stat-label">Artistas</div>
+        </div>
+        <div>
+          <div class="stat-num">320</div>
+          <div class="stat-label">Obras</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gi">
+      <div class="gi-inner">
+        <div class="gi-art"><img src="img/arte4.png" alt="Horizonte roto" loading="lazy"></div>
+        <div class="gi-info">
+          <div>
+            <div class="gi-title">Horizonte roto</div>
+            <div class="gi-artist">Valentina Cruz</div>
+          </div>
+          <div class="gi-tag" style="background:#e8521a;">Destacada</div>
+        </div>
+      </div>
+    </div>
+    <div class="gi">
+      <div class="gi-inner">
+        <div class="gi-art"><img src="img/arte6.jpg" alt="Verde urbano" loading="lazy"></div>
+        <div class="gi-info">
+          <div>
+            <div class="gi-title">Verde urbano</div>
+            <div class="gi-artist">Marco Silva</div>
+          </div>
+          <div class="gi-tag">Nuevo</div>
+        </div>
+      </div>
+    </div>
+    <div class="gi">
+      <div class="gi-inner">
+        <div class="gi-art"><img src="img/arte7.jpg" alt="Calma profunda" loading="lazy"></div>
+        <div class="gi-info">
+          <div>
+            <div class="gi-title">Calma profunda</div>
+            <div class="gi-artist">Ana Reyes</div>
+          </div>
+          <div class="gi-tag">Óleo</div>
+        </div>
+      </div>
+    </div>
+    <div class="gi">
+      <div class="gi-inner">
+        <div class="gi-art"><img src="img/arte1.webp" alt="Fragmento IV" loading="lazy"></div>
+        <div class="gi-info">
+          <div>
+            <div class="gi-title">Fragmento IV</div>
+            <div class="gi-artist">Luis Rojas</div>
+          </div>
+          <div class="gi-tag">Mixta</div>
+        </div>
+      </div>
+    </div>
+    <div class="gi">
+      <div class="gi-inner">
+        <div class="gi-art"><img src="img/arte2.jpg" alt="Memoria II" loading="lazy"></div>
+        <div class="gi-info">
+          <div>
+            <div class="gi-title">Memoria II</div>
+            <div class="gi-artist">Sofía Ibáñez</div>
+          </div>
+          <div class="gi-tag">Acuarela</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="option-divider" style="background:#111; color:#fff;">
+  ↑ Opción 2 &nbsp;&nbsp;•&nbsp;&nbsp; Opción 3 ↓
+</div>
+
+<!-- ══════════════ OPCIÓN 3 ══════════════ -->
+<section id="op3">
+  <nav class="nav">
+    <div class="nav-logo">Galería Blanca</div>
+    <ul class="nav-links">
+      <li><a href="#">Artistas</a></li>
+      <li><a href="#">Obras</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <h1>Arte<br>que <em>respira</em><br>con vos</h1>
+    <div class="hero-right">
+      <p>Una galería pensada para que las obras hablen. Sin ruido, sin distracción. Solo arte y quienes lo crean.</p>
+      <a class="cta">Explorar la colección</a>
+    </div>
+  </div>
+
+  <div class="featured">
+    <div class="featured-main">
+      <div class="feat-art">
+        <img src="img/arte5.avif" alt="Sin nombre todavía" loading="lazy">
+        <div class="feat-art-num">01 / 12</div>
+      </div>
+      <div class="feat-title">Sin nombre todavía</div>
+      <div class="feat-meta" style="margin-top:0.3rem;">Valentina Cruz — Óleo sobre tela, 2024</div>
+    </div>
+    <div class="featured-list">
+      <div class="fl-item">
+        <div class="fl-num">02</div>
+        <div class="fl-art"><img src="img/arte4.png" alt="Paisaje de adentro" loading="lazy"></div>
+        <div class="fl-title">Paisaje de adentro</div>
+        <div class="fl-artist">Marco Silva</div>
+      </div>
+      <div class="fl-item">
+        <div class="fl-num">03</div>
+        <div class="fl-art"><img src="img/arte6.jpg" alt="La espera" loading="lazy"></div>
+        <div class="fl-title">La espera</div>
+        <div class="fl-artist">Ana Reyes</div>
+      </div>
+      <div class="fl-item">
+        <div class="fl-num">04</div>
+        <div class="fl-art"><img src="img/arte7.jpg" alt="Forma libre" loading="lazy"></div>
+        <div class="fl-title">Forma libre</div>
+        <div class="fl-artist">Luis Rojas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="option-divider">
+  ✦ Fin de las 3 propuestas — ¿Cuál te llama más? ✦
+</div>
+
+</body>
+</html>
