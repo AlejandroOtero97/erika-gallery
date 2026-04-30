@@ -434,7 +434,6 @@ nav {
 }
 .gallery-item:hover { background: #0f0f0f; }
 .gallery-item:first-child { grid-column: span 2; }
-.gallery-item:nth-child(5) { grid-column: span 2; }
 
 .gi-art {
   overflow: hidden;
@@ -576,12 +575,13 @@ nav {
   grid-template-columns: 1.25fr 1fr;
   gap: 1px;
   background: var(--border);
+  align-items: stretch;
 }
 .exhibit-visual {
-  height: 520px;
   overflow: hidden;
   position: relative;
   background: var(--bg3);
+  min-height: 520px;
 }
 .exhibit-visual img {
   width: 100%; height: 100%;
