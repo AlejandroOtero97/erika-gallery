@@ -1143,9 +1143,36 @@ footer {
   .artists-grid { grid-template-columns: 1fr 1fr; }
 
   .artist-detail { padding: 3.5rem 1.5rem; }
-  .ad-header { grid-template-columns: 1fr; gap: 1.5rem; text-align: left; }
-  .ad-portrait { width: 130px; height: 130px; }
-  .ad-name { font-size: 2rem; }
+  .ad-header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+  }
+  .ad-back { text-align: center; }
+  .ad-portrait {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+  .ad-name {
+    font-size: 2.2rem;
+    margin-bottom: 0.7rem;
+  }
+  .ad-disc {
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+  }
+  .ad-bio {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+  .ad-count {
+    font-size: 0.7rem;
+  }
   .ad-masonry { column-count: 2; column-gap: 6px; }
   .ad-item { margin-bottom: 6px; }
   .lightbox { padding: 1.5rem 1rem; }
@@ -1373,7 +1400,7 @@ footer {
       <span class="section-eyebrow">Artista</span>
       <h2 class="ad-name">Jota Fagín</h2>
       <div class="ad-disc">Fotógrafo</div>
-      <p class="ad-bio">Biografía por completar — un breve texto sobre su trayectoria, técnica y mirada artística.</p>
+      <p class="ad-bio">Nacido en Buenos Aires en 1990, Jota Fagin ha desarrollado su obra entre Australia, Europa y América, construyendo una trayectoria internacional de más de diez años.</p>
       <div class="ad-count">11 obras</div>
     </div>
   </div>
