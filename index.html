@@ -513,6 +513,9 @@ nav {
   cursor: pointer;
   overflow: hidden;
   transition: background 0.3s;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 .artist-card:hover { background: var(--bg2); }
 .artist-portrait {
@@ -566,6 +569,181 @@ nav {
   transition: opacity 0.3s, transform 0.3s;
 }
 .artist-card:hover .artist-cta { opacity: 1; transform: translateY(0); }
+
+/* ─── DETALLE DE ARTISTA ───────────────────────────── */
+.artist-detail {
+  padding: 5rem 3.5rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(201,169,110,0.11), transparent 32%),
+    linear-gradient(135deg, rgba(255,255,255,0.02), rgba(201,169,110,0.03));
+}
+.artist-detail::before,
+.artist-detail::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(30px);
+  pointer-events: none;
+  opacity: 0.8;
+  animation: artistFlow 10s ease-in-out infinite alternate;
+}
+.artist-detail::before {
+  width: 320px;
+  height: 320px;
+  top: -90px;
+  right: -70px;
+  background: radial-gradient(circle, rgba(201,169,110,0.14), transparent 70%);
+}
+.artist-detail::after {
+  width: 260px;
+  height: 260px;
+  bottom: -90px;
+  left: -50px;
+  background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 72%);
+  animation-direction: alternate-reverse;
+}
+
+.ad-back { margin-bottom: 2.5rem; position: relative; z-index: 1; }
+.ad-back-link {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.ad-back-link:hover { color: var(--gold); }
+
+.ad-header {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2.75rem;
+  align-items: center;
+  margin-bottom: 3.5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+.ad-portrait {
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  background: var(--bg3);
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.24);
+}
+.ad-portrait img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(30%) brightness(0.9);
+}
+.ad-name {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: #f0ebe2;
+  line-height: 1.05;
+  margin: 0.3rem 0 0.6rem;
+}
+.ad-disc {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.1rem;
+}
+.ad-bio {
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--text2);
+  max-width: 58ch;
+  margin-bottom: 1.1rem;
+}
+.ad-count {
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.ad-masonry {
+  column-count: 3;
+  column-gap: 1px;
+  background: var(--border);
+  position: relative;
+  z-index: 1;
+}
+.ad-item {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin-bottom: 1px;
+  overflow: hidden;
+  background: var(--bg3);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+.ad-item img {
+  width: 100%;
+  display: block;
+  filter: brightness(0.92);
+  transition: transform 0.7s ease, filter 0.4s ease;
+}
+.ad-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.26);
+}
+.ad-item:hover img { transform: scale(1.035) translateY(-2px); filter: brightness(1.03); }
+
+@keyframes artistFlow {
+  0% { transform: translate3d(0,0,0) scale(0.95); }
+  100% { transform: translate3d(8px,-10px,0) scale(1.05); }
+}
+@keyframes portraitShine {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+/* ─── LIGHTBOX ─────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(8,8,8,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  z-index: 9997;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: pointer;
+}
+.lightbox.active { opacity: 1; visibility: visible; }
+.lightbox img {
+  max-width: 88vw;
+  max-height: 88vh;
+  object-fit: contain;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  cursor: default;
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.75rem;
+  right: 2rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text2);
+  cursor: pointer;
+}
+.lightbox-close:hover { color: var(--gold); }
 
 /* ─── EXHIBICIÓN ───────────────────────────────────── */
 #exhibicion { padding: 5rem 3.5rem; border-bottom: 1px solid var(--border); }
@@ -936,6 +1114,11 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ─── TABLET ───────────────────────────────────────── */
+@media (max-width: 1100px) and (min-width: 901px) {
+  .ad-masonry { column-count: 2; }
+}
+
 /* ─── MOBILE ───────────────────────────────────────── */
 @media (max-width: 900px) {
   body { cursor: auto; }
@@ -959,6 +1142,15 @@ footer {
   #artistas { padding: 3.5rem 1.5rem; }
   .artists-grid { grid-template-columns: 1fr 1fr; }
 
+  .artist-detail { padding: 3.5rem 1.5rem; }
+  .ad-header { grid-template-columns: 1fr; gap: 1.5rem; text-align: left; }
+  .ad-portrait { width: 130px; height: 130px; }
+  .ad-name { font-size: 2rem; }
+  .ad-masonry { column-count: 2; column-gap: 6px; }
+  .ad-item { margin-bottom: 6px; }
+  .lightbox { padding: 1.5rem 1rem; }
+  .lightbox-close { top: 1rem; right: 1rem; }
+
   #exhibicion { padding: 3.5rem 1.5rem; }
   .exhibit-grid { grid-template-columns: 1fr; }
   .exhibit-visual { height: 280px; }
@@ -978,6 +1170,10 @@ footer {
   .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
+@media (max-width: 520px) {
+  .ad-masonry { column-count: 1; }
 }
 </style>
 </head>
@@ -1037,8 +1233,8 @@ footer {
     <div class="hero-img-overlay"></div>
     <div class="hero-caption">
       <div class="hero-cap-tag">Obra destacada</div>
-      <div class="hero-cap-title">Sin nombre todavía</div>
-      <div class="hero-cap-artist">Valentina Cruz — 2024</div>
+      <div class="hero-cap-title">The Scream</div>
+      <div class="hero-cap-artist">Edvard Munch — 1893</div>
     </div>
   </div>
 </section>
@@ -1133,14 +1329,14 @@ footer {
     <a href="#" class="section-link">Ver todos</a>
   </div>
   <div class="artists-grid reveal reveal-delay">
-    <div class="artist-card">
-      <div class="artist-portrait"><img src="img/artista1.jpg" alt="Valentina Cruz" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
+    <a href="#jota-fagin" class="artist-card">
+      <div class="artist-portrait"><img src="img/jota-fagin/avatar.webp" alt="Jota Fagín" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
       <div class="artist-info">
-        <div class="artist-name">Valentina Cruz</div>
-        <div class="artist-disc">Pintura — Óleo</div>
-        <div class="artist-cta">12 obras disponibles →</div>
+        <div class="artist-name">Jota Fagín</div>
+        <div class="artist-disc">Fotógrafo</div>
+        <div class="artist-cta">11 obras disponibles →</div>
       </div>
-    </div>
+    </a>
     <div class="artist-card">
       <div class="artist-portrait"><img src="img/artista2.jpg" alt="Marco Silva" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
       <div class="artist-info">
@@ -1167,6 +1363,40 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- ─── DETALLE ARTISTA: JOTA FAGÍN ─── -->
+<section id="jota-fagin" class="artist-detail">
+  <div class="ad-back reveal"><a href="#artistas" class="ad-back-link">← Volver a artistas</a></div>
+  <div class="ad-header reveal">
+    <div class="ad-portrait"><img src="img/jota-fagin/avatar.webp" alt="Jota Fagín" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
+    <div>
+      <span class="section-eyebrow">Artista</span>
+      <h2 class="ad-name">Jota Fagín</h2>
+      <div class="ad-disc">Fotógrafo</div>
+      <p class="ad-bio">Biografía por completar — un breve texto sobre su trayectoria, técnica y mirada artística.</p>
+      <div class="ad-count">11 obras</div>
+    </div>
+  </div>
+  <div class="ad-masonry reveal reveal-delay">
+    <div class="ad-item"><img src="img/jota-fagin/vertical-1.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/vertical-2.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/horizontal-1.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/vertical-3.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/vertical-4.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/vertical-5.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/horizontal-2.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/vertical-6.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/vertical-7.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/horizontal-3.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+    <div class="ad-item"><img src="img/jota-fagin/vertical-8.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+  </div>
+</section>
+
+<!-- ─── LIGHTBOX ─── -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close">Cerrar ✕</div>
+  <img id="lightboxImg" src="" alt="Vista ampliada de la obra">
+</div>
 
 <!-- ─── EXHIBICIÓN ─── -->
 <section id="exhibicion">
@@ -1348,7 +1578,7 @@ const ring = document.getElementById('cursorRing');
 let mx = -200, my = -200, rx = -200, ry = -200;
 document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 document.addEventListener('mouseover', e => {
-  const el = e.target.closest('a, button, .gallery-item, .artist-card, .col-card');
+  const el = e.target.closest('a, button, .gallery-item, .artist-card, .col-card, .ad-item');
   if (el) { cursor.classList.add('hover'); ring.classList.add('hover'); }
   else { cursor.classList.remove('hover'); ring.classList.remove('hover'); }
 });
@@ -1365,6 +1595,24 @@ if (heroImg) heroImg.addEventListener('error', () => {
   const hr = document.getElementById('heroRight');
   if (hr) hr.innerHTML = '<div class="hero-ph"></div>';
 });
+
+// ── Lightbox de obras
+(function() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  if (!lightbox || !lightboxImg) return;
+  document.querySelectorAll('.ad-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('active');
+    });
+  });
+  lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') lightbox.classList.remove('active');
+  });
+})();
 
 // ── Scroll reveal
 const obs = new IntersectionObserver((entries) => {
