@@ -693,6 +693,31 @@ nav {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding-top: 0.2rem;
+  position: relative;
+  display: inline-block;
+  align-self: center;
+  padding: 0.2rem 0.8rem;
+}
+.ad-group-title::before {
+  content: attr(data-title);
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: rgba(201,169,110,0.35);
+  transform: scaleY(-1);
+  filter: blur(0.6px);
+  opacity: 0.45;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.9));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.9));
+}
+.ad-group-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.25rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.8), transparent);
 }
 .ad-masonry {
   display: grid;
@@ -1239,8 +1264,22 @@ footer {
   .ad-count {
     font-size: 0.7rem;
   }
-  .ad-masonry { column-count: 2; column-gap: 6px; }
-  .ad-item { margin-bottom: 6px; }
+  .ad-gallery { gap: 1.4rem; }
+  .ad-group { gap: 0.75rem; }
+  .ad-group-title { font-size: 1.05rem; }
+  .ad-masonry {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    background: transparent;
+  }
+  .ad-item {
+    min-height: auto;
+    aspect-ratio: 4 / 5;
+  }
+  .ad-masonry .ad-item:nth-child(2n) {
+    grid-row: span 1;
+    min-height: auto;
+  }
   .lightbox { padding: 1.5rem 1rem; }
   .lightbox-close { top: 1rem; right: 1rem; }
 
@@ -1480,7 +1519,7 @@ footer {
     </div>
 
     <div class="ad-group">
-      <div class="ad-group-title">Moodscape</div>
+      <div class="ad-group-title" data-title="Moodscape">Moodscape</div>
       <div class="ad-masonry">
         <div class="ad-item"><img src="img/jota-fagin/vertical-2-ms.jpg" alt="Moodscape de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
         <div class="ad-item"><img src="img/jota-fagin/vertical-4-ms.jpg" alt="Moodscape de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
@@ -1490,7 +1529,7 @@ footer {
     </div>
 
     <div class="ad-group">
-      <div class="ad-group-title">Liminal Space</div>
+      <div class="ad-group-title" data-title="Liminal Space">Liminal Space</div>
       <div class="ad-masonry">
         <div class="ad-item"><img src="img/jota-fagin/horizontal-2-ls.jpg" alt="Liminal Space de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
         <div class="ad-item"><img src="img/jota-fagin/vertical-3-ls.jpg" alt="Liminal Space de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
