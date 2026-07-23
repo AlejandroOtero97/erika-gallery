@@ -672,25 +672,48 @@ nav {
   color: var(--text3);
 }
 
+.ad-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+.ad-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ad-group-title {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #f0ebe2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding-top: 0.2rem;
+}
 .ad-masonry {
-  column-count: 3;
-  column-gap: 1px;
-  background: var(--border);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(24, 24, 24, 0.884);
   position: relative;
   z-index: 1;
 }
 .ad-item {
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  margin-bottom: 1px;
   overflow: hidden;
   background: var(--bg3);
   cursor: pointer;
   position: relative;
   transition: transform 0.45s ease, box-shadow 0.45s ease;
+  min-height: 220px;
 }
 .ad-item img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
   filter: brightness(0.92);
   transition: transform 0.7s ease, filter 0.4s ease;
@@ -700,6 +723,14 @@ nav {
   box-shadow: 0 12px 30px rgba(0,0,0,0.26);
 }
 .ad-item:hover img { transform: scale(1.035) translateY(-2px); filter: brightness(1.03); }
+
+.ad-masonry .ad-item:nth-child(2n) {
+  grid-row: span 2;
+  min-height: 440px;
+}
+.ad-masonry .ad-item:nth-child(3n) {
+  grid-column: span 1;
+}
 
 @keyframes artistFlow {
   0% { transform: translate3d(0,0,0) scale(0.95); }
@@ -714,7 +745,7 @@ nav {
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(8,8,8,0.95);
+  background: rgba(8, 8, 8, 0.726);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1392,7 +1423,7 @@ footer {
   </div>
   <div class="artists-grid reveal reveal-delay">
     <a href="#jota-fagin" class="artist-card">
-      <div class="artist-portrait"><img src="img/jota-fagin/avatar.webp" alt="Jota Fagín" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
+      <div class="artist-portrait"><img src="img/jota-fagin/avatar.png" alt="Jota Fagín" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
       <div class="artist-info">
         <div class="artist-name">Jota Fagín</div>
         <div class="artist-disc">Fotógrafo</div>
@@ -1430,7 +1461,7 @@ footer {
 <section id="jota-fagin" class="artist-detail">
   <div class="ad-back reveal"><a href="#artistas" class="ad-back-link">← Volver a artistas</a></div>
   <div class="ad-header reveal">
-    <div class="ad-portrait"><img src="img/jota-fagin/avatar.webp" alt="Jota Fagín" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
+    <div class="ad-portrait"><img src="img/jota-fagin/avatar.png" alt="Jota Fagín" onerror="this.outerHTML='<div class=ap-ph></div>'"></div>
     <div>
       <span class="section-eyebrow">Artista</span>
       <h2 class="ad-name">Jota Fagín</h2>
@@ -1439,18 +1470,34 @@ footer {
       <div class="ad-count">11 obras</div>
     </div>
   </div>
-  <div class="ad-masonry reveal reveal-delay">
-    <div class="ad-item"><img src="img/jota-fagin/vertical-1.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/vertical-2.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/horizontal-1.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/vertical-3.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/vertical-4.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/vertical-5.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/horizontal-2.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/vertical-6.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/vertical-7.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/horizontal-3.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-    <div class="ad-item"><img src="img/jota-fagin/vertical-8.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+  <div class="ad-gallery reveal reveal-delay">
+    <div class="ad-group">
+      <div class="ad-masonry">
+        <div class="ad-item"><img src="img/jota-fagin/vertical-1.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <div class="ad-item"><img src="img/jota-fagin/horizontal-1.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <div class="ad-item"><img src="img/jota-fagin/horizontal-3.jpg" alt="Obra de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="ad-group">
+      <div class="ad-group-title">Moodscape</div>
+      <div class="ad-masonry">
+        <div class="ad-item"><img src="img/jota-fagin/vertical-2-ms.jpg" alt="Moodscape de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <div class="ad-item"><img src="img/jota-fagin/vertical-4-ms.jpg" alt="Moodscape de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <div class="ad-item"><img src="img/jota-fagin/vertical-5-ms.jpg" alt="Moodscape de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <div class="ad-item"><img src="img/jota-fagin/vertical-7-ms.jpg" alt="Moodscape de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="ad-group">
+      <div class="ad-group-title">Liminal Space</div>
+      <div class="ad-masonry">
+        <div class="ad-item"><img src="img/jota-fagin/horizontal-2-ls.jpg" alt="Liminal Space de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <div class="ad-item"><img src="img/jota-fagin/vertical-3-ls.jpg" alt="Liminal Space de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <div class="ad-item"><img src="img/jota-fagin/vertical-6-ls.jpg" alt="Liminal Space de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+        <div class="ad-item"><img src="img/jota-fagin/vertical-8-ls.jpg" alt="Liminal Space de Jota Fagín" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1671,21 +1718,29 @@ if (heroImg) heroImg.addEventListener('error', () => {
   const nextBtn = lightbox ? lightbox.querySelector('.lightbox-nav-next') : null;
   if (!lightbox || !lightboxImg || !counterEl || !closeBtn || !prevBtn || !nextBtn) return;
 
-  const galleryImages = Array.from(document.querySelectorAll('#jota-fagin .ad-item img'));
+  const imageGroups = Array.from(document.querySelectorAll('#jota-fagin .ad-group'))
+    .map(group => Array.from(group.querySelectorAll('.ad-item img')))
+    .filter(group => group.length);
+
+  let currentGroupIndex = 0;
   let currentIndex = 0;
 
   function updateNavigation() {
-    const total = galleryImages.length;
+    const currentGroup = imageGroups[currentGroupIndex];
+    const total = currentGroup ? currentGroup.length : 0;
     const hasMultiple = total > 1;
     prevBtn.disabled = !hasMultiple;
     nextBtn.disabled = !hasMultiple;
     counterEl.textContent = total ? `${currentIndex + 1} / ${total}` : '0 / 0';
   }
 
-  function showImage(index) {
-    if (!galleryImages.length) return;
-    currentIndex = (index + galleryImages.length) % galleryImages.length;
-    const image = galleryImages[currentIndex];
+  function showImage(groupIndex, index) {
+    if (!imageGroups.length) return;
+    currentGroupIndex = (groupIndex + imageGroups.length) % imageGroups.length;
+    const currentGroup = imageGroups[currentGroupIndex];
+    if (!currentGroup.length) return;
+    currentIndex = (index + currentGroup.length) % currentGroup.length;
+    const image = currentGroup[currentIndex];
     lightboxImg.src = image.currentSrc || image.src;
     lightboxImg.alt = image.alt;
     lightbox.classList.add('active');
@@ -1696,21 +1751,23 @@ if (heroImg) heroImg.addEventListener('error', () => {
     lightbox.classList.remove('active');
   }
 
-  galleryImages.forEach((img, index) => {
-    img.addEventListener('click', e => {
-      e.stopPropagation();
-      showImage(index);
+  imageGroups.forEach((group, groupIndex) => {
+    group.forEach((img, imageIndex) => {
+      img.addEventListener('click', e => {
+        e.stopPropagation();
+        showImage(groupIndex, imageIndex);
+      });
     });
   });
 
   prevBtn.addEventListener('click', e => {
     e.stopPropagation();
-    showImage(currentIndex - 1);
+    showImage(currentGroupIndex, currentIndex - 1);
   });
 
   nextBtn.addEventListener('click', e => {
     e.stopPropagation();
-    showImage(currentIndex + 1);
+    showImage(currentGroupIndex, currentIndex + 1);
   });
 
   closeBtn.addEventListener('click', e => {
@@ -1727,8 +1784,8 @@ if (heroImg) heroImg.addEventListener('error', () => {
   document.addEventListener('keydown', e => {
     if (!lightbox.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') showImage(currentIndex + 1);
-    if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+    if (e.key === 'ArrowRight') showImage(currentGroupIndex, currentIndex + 1);
+    if (e.key === 'ArrowLeft') showImage(currentGroupIndex, currentIndex - 1);
   });
 
   updateNavigation();
